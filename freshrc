@@ -11,13 +11,14 @@
 fresh freshshell/fresh bin/fresh --bin
 
 # Common Shell (~/.fresh/build/shell.sh)
-fresh shell/exports.sh
+fresh shell/common/\*
 
 # CONFIG FILES
 
 fresh-options --file
   fresh config/\*
   fresh jasoncodes/dotfiles config/gemrc
+  fresh jasoncodes/dotfiles shell/config/rbenv.sh
 fresh-options
 
 # BASH
@@ -31,7 +32,6 @@ fresh-options
 fresh-options --file=~/.zshrc --marker
   fresh shell/zsh/zshrc
   fresh shell/zsh/oh-my-zsh.zsh
-  fresh shell/zsh/aws.zsh
   fresh shell/zsh/aliases.zsh
   fresh freshshell/fresh contrib/completion/fresh-completion.zsh
 fresh-options
@@ -39,4 +39,11 @@ fresh-options
 fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
 
 # BINARIES
-fresh twe4ked/catacomb bin/catacomb --bin
+fresh-options --bin
+  fresh bin/\*
+  fresh twe4ked/catacomb bin/catacomb
+  fresh rerun/rerun rerun
+fresh-options
+
+# RERUN MODULES
+fresh rerun/rerun modules/stubbs --file=~/.rerun/modules/stubbs

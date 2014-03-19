@@ -8,7 +8,7 @@
 	co = checkout
 	st = status
 	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short	
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 	tree = log --oneline --decorate --graph
 	ctags = !.git/hooks/ctags
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
@@ -38,14 +38,14 @@
 	unassume = update-index --no-assume-unchanged
 	assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
 	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-	
-	
+
+
 [color]
 	diff = auto
 	status = auto
 	branch = auto
 	ui = true
-	
+
 [core]
 	excludesfile = ~/.gitignore
 	quotepath = false

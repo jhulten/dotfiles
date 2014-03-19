@@ -1,0 +1,13 @@
+export EDITOR='vim'
+export VISUAL=$EDITOR
+
+source ~/.fresh/build/shell.sh
+
+export OPSCODE_USER=jhulten
+
+export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/
+export GROOVY_HOME=/Users/jeffh/Developer/Cellar/groovy/2.0.5/libexec
+
+export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+
+unsetopt auto_name_dirs

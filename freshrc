@@ -9,8 +9,17 @@
 # See http://freshshell.com/readme for documentation.
 
 fresh freshshell/fresh bin/fresh --bin
-
 fresh freshshell/fresh contrib/completion/fresh-completion.bash
 
+fresh-options --file
+  fresh config/\*
+  fresh jasoncodes/dotfiles config/gemrc
+fresh-options
 
-fresh gitconfig --file
+# Zsh
+fresh-options --file=~/.zshrc --marker
+  fresh shell/zsh/zshrc
+  fresh shell/zsh/oh-my-zsh.zsh
+  fresh shell/zsh/aws.zsh
+  fresh shell/zsh/aliases.zsh
+fresh-options

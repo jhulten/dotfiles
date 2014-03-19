@@ -1,6 +1,0 @@
-export PATH=$HOME/.homebrew/opt/coreutils/libexec/gnubin:$PATH
-export MANPATH=$HOME/.homebrew/opt/coreutils/libexec/gnuman:$MANPATH
-export PATH=$HOME/.homebrew/bin:$PATH
-export SSL_CERT_FILE=$HOME/.homebrew/etc/openssl/cert.pem
-export LDFLAGS=-L$HOME/.homebrew/opt/gettext/lib
-export CPPFLAGS=-I$HOME/.homebrew/opt/gettext/include

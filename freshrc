@@ -9,17 +9,34 @@
 # See http://freshshell.com/readme for documentation.
 
 fresh freshshell/fresh bin/fresh --bin
-fresh freshshell/fresh contrib/completion/fresh-completion.bash
+
+# Common Shell (~/.fresh/build/shell.sh)
+fresh shell/exports.sh
+
+# CONFIG FILES
 
 fresh-options --file
   fresh config/\*
   fresh jasoncodes/dotfiles config/gemrc
 fresh-options
 
-# Zsh
+# BASH
+
+fresh-options --file=~/.bashrc --marker
+  fresh shell/bash/bashrc
+  fresh freshshell/fresh contrib/completion/fresh-completion.bash
+fresh-options
+
+# ZSH
 fresh-options --file=~/.zshrc --marker
   fresh shell/zsh/zshrc
   fresh shell/zsh/oh-my-zsh.zsh
   fresh shell/zsh/aws.zsh
   fresh shell/zsh/aliases.zsh
+  fresh freshshell/fresh contrib/completion/fresh-completion.zsh
 fresh-options
+
+fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
+
+# BINARIES
+fresh twe4ked/catacomb bin/catacomb --bin

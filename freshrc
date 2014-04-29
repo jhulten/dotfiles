@@ -13,7 +13,7 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 
 # Common Shell (~/.fresh/build/shell.sh)
 fresh shell/common/\*
-fresh jasoncodes/dotfiles shell/config/rbenv.sh
+fresh jasoncodes/dotfiles shell/config/rbenv.sh --ref=f29ba0adf8a
 fresh rupa/z z.sh
 fresh nojhan/liquidprompt liquidprompt
 
@@ -67,6 +67,7 @@ fresh-options --file=~/.vimrc --marker=\"
   fresh twe4ked/dotfiles vim/vundle_after.vim
   fresh vim/config/indent.vim
   fresh vim/config/statusline.vim
+  fresh vim/config/color.vim
 fresh-options
 
 init_vim() {

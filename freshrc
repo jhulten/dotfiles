@@ -62,14 +62,24 @@ fresh rerun/rerun modules/stubbs/\* --file=~/.rerun/modules/stubbs/
 
 # VIM
 fresh-options --file=~/.vimrc --marker=\"
-  fresh vim/config/nocompat.vim
   fresh vim/config/leader.vim
   fresh twe4ked/dotfiles vim/vundle_before.vim
   fresh vim/bundles.vim
   fresh twe4ked/dotfiles vim/vundle_after.vim
+  fresh vim/config/color.vim
   fresh vim/config/indent.vim
   fresh vim/config/statusline.vim
-  fresh vim/config/color.vim
+  fresh vim/config/suffixes.vim
+  fresh vim/config/syntastic.vim
+  fresh vim/config/fuzzy.vim
+  fresh vim/config/taglist.vim
+  fresh vim/config/vimclojure.vim
+  fresh vim/config/linestyle.vim
+  fresh vim/config/togglewrap.vim
+  fresh vim/config/buffers.vim
+  fresh vim/config/tabs.vim
+  fresh vim/config/keymaps.vim
+  fresh vim/config/ctrlp.vim
 fresh-options
 
 init_vim() {

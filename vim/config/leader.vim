@@ -1,2 +1,3 @@
-" Remap leader to ',' which is much easier than '\'
-let mapleader = ","
+" Map leaders
+let mapleader=","
+let maplocalleader=","

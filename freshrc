@@ -35,6 +35,8 @@ fresh-options
 fresh-options --file=~/.zshrc --marker
   fresh shell/zsh/zshrc
   fresh shell/zsh/oh-my-zsh.zsh
+  fresh shell/zsh/bindkey.zsh
+  fresh shell/zsh/rm_local_bin_path.zsh
   fresh freshshell/fresh contrib/completion/fresh-completion.zsh
   fresh twe4ked/dotfiles shell/zsh/zsh-syntax-highlighting.zsh
 fresh-options
@@ -56,7 +58,7 @@ fresh-options --bin
 fresh-options
 
 # RERUN MODULES
-fresh rerun/rerun modules/stubbs --file=~/.rerun/modules/stubbs
+fresh rerun/rerun modules/stubbs/\* --file=~/.rerun/modules/stubbs/
 
 # VIM
 fresh-options --file=~/.vimrc --marker=\"

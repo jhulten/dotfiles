@@ -44,3 +44,5 @@ Bundle 'bufexplorer.zip'
 " Bundle 'Lokaltog/vim-easymotion'
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Bundle 'git://git.wincent.com/command-t.git'
+
+Bundle 'rizzatti/dash.vim'

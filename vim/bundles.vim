@@ -46,3 +46,4 @@ Bundle 'bufexplorer.zip'
 " Bundle 'git://git.wincent.com/command-t.git'
 
 Bundle 'rizzatti/dash.vim'
+Bundle 'vimoutliner/vimoutliner'

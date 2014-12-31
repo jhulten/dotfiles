@@ -45,5 +45,13 @@ Bundle 'bufexplorer.zip'
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Bundle 'git://git.wincent.com/command-t.git'
 
+Bundle 'editorconfig-vim'
+
 Bundle 'rizzatti/dash.vim'
 Bundle 'vimoutliner/vimoutliner'
+
+Bundle 'saltstack/salt-vim'
+
+Bundle 'fatih/vim-go'
+
+Bundle 'twilight256.vim'

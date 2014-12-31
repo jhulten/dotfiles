@@ -37,7 +37,6 @@ fresh-options --file=~/.zshrc --marker
   fresh shell/zsh/zshrc
   fresh shell/zsh/oh-my-zsh.zsh
   fresh shell/zsh/bindkey.zsh
-  fresh shell/zsh/rm_local_bin_path.zsh
   fresh freshshell/fresh contrib/completion/fresh-completion.zsh
   fresh twe4ked/dotfiles shell/zsh/zsh-syntax-highlighting.zsh
 fresh-options
@@ -54,7 +53,7 @@ fresh-options --bin
   fresh bin/\*
   fresh twe4ked/catacomb bin/catacomb
   fresh rerun/rerun rerun
-  fresh git@github.dev.pages:ait/utility-scripts.git setup-vagrant.sh
+  fresh git@github.dev.pages:ait/utility-scripts.git vagrant/setup-vagrant.sh
   fresh defunkt/repl bin/repl
   fresh holman/spark spark
 fresh-options

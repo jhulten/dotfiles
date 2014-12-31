@@ -1,1 +1,1 @@
-export RERUN_MODULES=$HOME/.rerun/modules
+# export RERUN_MODULES=$HOME/.rerun/modules

@@ -53,7 +53,6 @@ fresh-options --bin
   fresh bin/\*
   fresh twe4ked/catacomb bin/catacomb
   fresh rerun/rerun rerun
-  fresh git@github.dev.pages:ait/utility-scripts.git vagrant/setup-vagrant.sh
   fresh defunkt/repl bin/repl
   fresh holman/spark spark
 fresh-options

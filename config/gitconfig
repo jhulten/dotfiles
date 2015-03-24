@@ -1,8 +1,6 @@
 [user]
-	email = jhulten@whitepages.com
+	email = jhulten@gmail.com
 	name = Jeffrey Hulten
-[hub]
-	host = github.dev.pages
 [alias]
 	ci = commit
 	co = checkout
@@ -57,14 +55,6 @@
 	#  templatedir = ~/.git_template
 [diff]
 	algorithm = patience
-[github]
-	host = github.dev.pages
-	user = jhulten
-	oauth-token = a0c986cbbfdb4388d226aa6841f5b7ac1c6a6454
-[ghi]
-	token = 4b3b2e8e8207612540b5bf7c7e4a68302829144f
-[omnifocus-github]
-	accounts = github
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f

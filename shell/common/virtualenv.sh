@@ -1,2 +1,3 @@
 export WORKON_HOME=$HOME/.virtualenvs
-. $HOME/.homebrew/bin/virtualenvwrapper_lazy.sh
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi

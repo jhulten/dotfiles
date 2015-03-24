@@ -13,6 +13,9 @@ if [[ "$platform" == 'macosx' ]]; then
 
   export CC=$HOMEBREW_PREFIX/bin/gcc
 
+  # Specify your defaults in this environment variable
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
   # Python Home
   export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 fi

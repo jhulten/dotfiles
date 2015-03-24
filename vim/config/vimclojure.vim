@@ -1,3 +1,8 @@
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 " Vimclojure settings
 let g:vimclojure#ParenRainbow = 1
 let g:vimclojure#HighlightBuiltins = 1 

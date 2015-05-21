@@ -1,2 +1,2 @@
 echo Updating PATH...
-export PATH=$PATH:/Users/jhulten/.chefdk/gem/ruby/2.1.0/bin
+# export PATH=$PATH:/Users/jhulten/.chefdk/gem/ruby/2.1.0/bin

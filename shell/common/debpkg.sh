@@ -1,2 +1,2 @@
 export DEBFULLNAME="Jeffrey Hulten"
-export DEBEMAIL="jhulten@whitepages.com"
+export DEBEMAIL="jeff@datadoghq.com"

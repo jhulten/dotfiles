@@ -1,0 +1,38 @@
+[general]
+targets= jh_github, dd_github
+log.level=DEBUG
+
+# Setting this to True will include a link to the ticket in the description
+inline_links = False
+
+# Setting this to True will include a link to the ticket as an annotation
+annotation_links = True
+
+[notifications]
+notifications = True
+backend = growlnotify
+finished_querying_sticky = False
+task_crud_sticky = True
+
+[jh_github]
+service = github
+default_priority = M
+add_tags = open_source
+github.username = jhulten
+github.login = jhulten
+github.token=7e4e195b534531926abfaffc39c57d0aa925487e
+
+[dd_github]
+service = github
+default_priority = M
+add_tags = datadog
+github.username = DataDog
+github.login = jhulten
+github.token=53f419c46d12d1bc0a9e5c64cf21e102c8037017
+#github.filter_pull_requests = True
+#github.import_labels_as_tags = True
+#github.label_template = github_{{label}}
+github.include_repos = devops
+#only_if_assigned = True
+#also_unassigned = True
+project_template = {{ githubrepo|replace("DataDog/","dd-") }}

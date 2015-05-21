@@ -1,10 +1,8 @@
 # Docker
 if command -v boot2docker >/dev/null 2>&1; then
-
-eval "$(boot2docker shellinit)"
-
-docker-enter() {
-      boot2docker ssh '[ -f /var/lib/boot2docker/nsenter ] || docker run --rm -v /var/lib/boot2docker/:/target jpetazzo/nsenter'
-      boot2docker ssh -t sudo /var/lib/boot2docker/docker-enter "$@"
-}
+  if [[ $(boot2docker status) == "poweroff" ]]; then
+    echo Starting boot2docker...
+    boot2docker up
+  fi
+  eval "$(boot2docker shellinit 2>/dev/null)"
 fi

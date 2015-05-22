@@ -4,4 +4,4 @@ if [[ -d /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest ]]; then
 
   echo Enable shell completion for gcloud...
   source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.$(basename $SHELL).inc
-end
+fi

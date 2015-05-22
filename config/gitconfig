@@ -1,6 +1,8 @@
 [user]
 	email = jhulten@gmail.com
 	name = Jeffrey Hulten
+[include]
+  path = .gitconfig.local
 [alias]
 	ci = commit
 	co = checkout

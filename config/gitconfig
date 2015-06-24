@@ -4,7 +4,7 @@
 [include]
   path = .gitconfig.local
 [alias]
-	ci = commit
+	ci = commit --verbose
 	co = checkout
 	st = status
 	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"

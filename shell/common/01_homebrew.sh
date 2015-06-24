@@ -1,5 +1,16 @@
 # Homebrew
 if [[ "$platform" == 'macosx' ]]; then
+  HOMEBREW_LOCK=/tmp/homebrew.install
+
+  lockfile -2 -r 30 $HOMEBREW_LOCK || exit 1
+
+  if [[ ! -f /usr/local/bin/brew ]]; then
+    echo "Installing Homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+  rm -f $HOMEBREW_LOCK
+
   echo "Configuring Homebrew..."
   # export HOMEBREW_PREFIX=$(brew --prefix)
   # export HOMEBREW_CELLAR=$HOMEBREW_PREFIX/Cellar

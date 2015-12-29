@@ -6,3 +6,7 @@
 *.iml
 *~
 \#*\#
+GTAGS
+GPATH
+GRTAGS
+.\#*

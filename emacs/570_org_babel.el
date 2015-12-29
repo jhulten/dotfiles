@@ -1,7 +1,7 @@
 ;; Diagram support
 
-(setq org-ditaa-jar-path "~/git/org-mode/contrib/scripts/ditaa.jar")
-(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/8018/plantuml.jar")
+(setq org-ditaa-jar-path "/usr/local/opt/ditta/libexec/ditaa0_9.jar")
+(setq org-plantuml-jar-path "/usr/local/opt/plantuml/plantuml.8092.jar")
 
 (add-hook 'org-babel-after-execute-hook 'bh/display-inline-images 'append)
 

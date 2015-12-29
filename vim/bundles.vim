@@ -63,3 +63,5 @@ Bundle 'saltstack/salt-vim'
 Bundle 'fatih/vim-go'
 
 Bundle 'twilight256.vim'
+Bundle 'bling/vim-airline'
+Bundle 'farseer90718/vim-taskwarrior'

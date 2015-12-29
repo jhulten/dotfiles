@@ -15,7 +15,7 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 fresh shell/aliases/\*
 fresh shell/common/\*
 fresh rupa/z z.sh
-fresh nojhan/liquidprompt liquidprompt
+#fresh nojhan/liquidprompt liquidprompt
 
 # CONFIG FILES
 fresh-options --file
@@ -75,7 +75,7 @@ fresh-options --file=~/.vimrc --marker=\"
 fresh-options
 
 # EMACS
-fresh-options --file=~/.emacs.d/init.el.test --marker=';;'
+fresh-options --file=~/.emacs.d/init.el --marker=';;'
   fresh emacs/\*.el
 fresh-options
 

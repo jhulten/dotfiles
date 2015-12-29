@@ -128,8 +128,8 @@
 ;;; Change log:
 ;;
 ;; 2015/02/20
-;;      * Binding C-Backspace to `term-send-backward-kill-word' to follow emacs behaviour. 
-;; 
+;;      * Binding C-Backspace to `term-send-backward-kill-word' to follow emacs behaviour.
+;;
 ;; 2014/12/04
 ;;      * Ernesto Rodriguez Reina <erreina@gmail.com>
 ;;      Fixed the bug of cursor not return to the position it was before opened the dedicated terminal window when
@@ -852,4 +852,3 @@ This advice can make `other-window' skip `multi-term' dedicated window."
 ;;; multi-term.el ends here
 
 ;;; LocalWords:  multi el dir sr Hawley eb ef cd
-

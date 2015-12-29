@@ -1,6 +1,10 @@
-(setq org-agenda-span 'day)
+(setq org-agenda-span 'week)
 
-(setq org-agenda-files (quote ("~/Dropbox/todo")))
+(setq org-agenda-files '("~/Dropbox/todo"))
+
+(setq org-time-budgets '((:title "Business" :tags "+Datadog" :budget "30:00" :block workweek)
+                         (:title "Sideprojects" :tags "+personal+project" :budget "14:00" :block week)
+                         (:title "Exercise" :tags "+exercise" :budget "5:15" :block week)))
 
 ;; Turn on diary within org-mode
 (setq org-agenda-include-diary t)
@@ -16,10 +20,10 @@
 (setq org-agenda-todo-ignore-deadlines nil)
 
 ;; Keep tasks with scheduled dates on the global todo lists
-(setq org-agenda-todo-ignore-scheduled nil)
+(setq org-agenda-todo-ignore-scheduled t)
 
 ;; Keep tasks with timestamps on the global todo lists
-(setq org-agenda-todo-ignore-timestamp nil)
+(setq org-agenda-todo-ignore-timestamp t)
 
 ;; Remove completed deadline tasks from the agenda view
 (setq org-agenda-skip-deadline-if-done t)
@@ -28,10 +32,10 @@
 (setq org-agenda-skip-scheduled-if-done t)
 
 ;; Remove completed items from search results
-(setq org-agenda-skip-timestamp-if-done t)
+(setq org-agenda-skip-timestamp-if-done nil)
 
 ;; Show all future entries for repeating tasks
-(setq org-agenda-repeating-timestamp-show-all t)
+(setq org-agenda-repeating-timestamp-show-all nil)
 
 ;; Show all agenda dates - even if they are empty
 (setq org-agenda-show-all-dates t)
@@ -43,13 +47,51 @@
               (tags category-up effort-up)
               (search category-up))))
 
+              (setq org-agenda-custom-commands
+                    '(("O" "Office block agenda"
+                        ((agenda "" ((org-agenda-ndays 1)))
+                                    ;; limits the agenda display to a single day
+                         (tags-todo "@work|Datadog|phone")
+                         (todo "TODO" ((org-agenda-files '("~/Dropbox/todo/inbox.org"))))
+                                        ;; limits the tag search to the file inbox.org
+                         (todo "BLOCKED"))
+                        ((org-agenda-compact-blocks t)) ;; options set here apply to the entire block
+                      )
+                      ("A" "Custom agenda"
+                        ((agenda "")
+                         (org-time-budgets-for-agenda))
+              	)
+              	("b" "Projects"
+              	 ((todo "PROJECT"))
+              	)
+              	("W" "Weekly Review"
+                       ((agenda "" ((org-agenda-ndays 7))) ;; review upcoming deadlines and appointments
+                                                         ;; type "l" in the agenda to review logged items
+                        (stuck "") ;; review stuck projects as designated by org-stuck-projects
+                        (todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
+                        (todo "MAYBE") ;; review someday/maybe items
+                        (todo "WAITING")) ;; review waiting items
+              	 )
+              	("d" "Upcoming deadlines" agenda ""
+                              ((org-agenda-time-grid nil)
+                               (org-deadline-warning-days 365)        ;; [1]
+                               (org-agenda-entry-types '(:deadline))  ;; [2]
+                               ))
+              	("c" "Calendar" agenda ""
+                       ((org-agenda-ndays 7)                          ;; [1]
+                        (org-agenda-start-on-weekday 0)               ;; [2]
+                        (org-agenda-time-grid nil)
+                        (org-agenda-repeating-timestamp-show-all t)   ;; [3]
+                        (org-agenda-entry-types '(:timestamp :sexp))))  ;; [4]
+              ))
+
 ;; Start the weekly agenda on Monday
 (setq org-agenda-start-on-weekday 1)
 
 ;; Enable display of the time grid so we can see the marker for the current time
 (setq org-agenda-time-grid (quote ((daily today remove-match)
                                    #("----------------" 0 16 (org-heading t))
-                                   (0900 1100 1300 1500 1700))))
+                                   (0900 1100 1300 1500 1700 1900))))
 
 ;; Display tags farther right
 (setq org-agenda-tags-column -102)
@@ -60,8 +102,7 @@
 (setq org-agenda-cmp-user-defined 'bh/agenda-sort)
 
 (defun bh/agenda-sort (a b)
-  "Sorting strategy for agenda items.
-Late deadlines first, then scheduled, then non-late deadlines"
+  "Sorting strategy for agenda items. Late deadlines first, then scheduled, then non-late deadlines"
   (let (result num-a num-b)
     (cond
      ; time specific items are already sorted first by org-agenda-sorting-strategy

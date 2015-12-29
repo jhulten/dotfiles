@@ -1,2 +1,2 @@
-#export GOPATH=$HOME/go
-export GOPATH=$HOME/Projects/go
+# Letting direnv layout handle it
+# export GOPATH=$HOME/Projects/go

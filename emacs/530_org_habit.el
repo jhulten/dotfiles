@@ -7,4 +7,3 @@
 ;; Habit settings
 (setq org-habit-preceding-days 14)
 (setq org-habit-following-days 3)
-

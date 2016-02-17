@@ -1,0 +1,31 @@
+** Languages
+
+*** Ruby
+
+#+BEGIN_SRC emacs-lisp
+
+(setq rbenv-installation-dir "/usr/local")
+
+(require 'rbenv)
+(global-rbenv-mode)
+
+(setq rbenv-show-active-ruby-in-modeline nil)
+
+(require 'rspec-mode)
+(eval-after-load 'rspec-mode
+  '(rspec-install-snippets))
+
+#+END_SRC
+
+*** Clojure
+
+#+BEGIN_SRC emacs-lisp
+
+;; Clojure setup
+(add-hook 'cider-mode-hook #'eldoc-mode)
+(setq nrepl-log-messages t)
+(setq nrepl-hide-special-buffers t)
+;;(setq cider-repl-result-prefix ";; => ")
+(setq cider-test-show-report-on-success t)
+
+#+END_SRC

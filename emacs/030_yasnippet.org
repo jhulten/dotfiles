@@ -1,0 +1,12 @@
+** YASnippets
+
+#+BEGIN_SRC emacs-lisp
+(require 'yasnippet)
+
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+      yas-installed-snippets-dir
+      ))
+
+(yas-global-mode 1)
+#+END_SRC

@@ -1,6 +1,7 @@
 [user]
 	email = jhulten@gmail.com
 	name = Jeffrey Hulten
+  signingkey = E5C5C41A
 [include]
   path = .gitconfig.local
 [alias]

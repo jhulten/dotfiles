@@ -1,3 +1,6 @@
+** Evil Mode
+
+#+BEGIN_SRC emacs-lisp
 ; Use evil mode
 (require 'evil)
 (evil-mode t)
@@ -24,3 +27,4 @@
 
 (require 'evil-surround)
 (global-evil-surround-mode 1)
+#+END_SRC

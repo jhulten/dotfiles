@@ -1,3 +1,7 @@
+
+** Helm
+
+#+BEGIN_SRC emacs-lisp
 (require 'helm)
 
 (require 'helm-config)
@@ -30,3 +34,4 @@
       helm-recentf-fuzzy-match    t)
 
 (helm-mode 1)
+#+END_SRC

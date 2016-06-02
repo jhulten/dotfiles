@@ -414,6 +414,11 @@
 (add-to-list 'org-src-lang-modes (quote ("plantuml" . fundamental)))
 
 #+END_SRC
+*** Reveal.js
+
+#+BEGIN_SRC emacs-lisp
+(require 'ox-reveal)
+#+END_SRC
 
 *** Publish
 

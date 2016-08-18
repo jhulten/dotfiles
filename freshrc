@@ -15,7 +15,7 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 fresh shell/aliases/\*
 fresh shell/common/\*
 # fresh rupa/z z.sh
-# fresh nojhan/liquidprompt liquidprompt
+fresh nojhan/liquidprompt liquidprompt
 
 # CONFIG FILES
 fresh-options --file
@@ -38,7 +38,7 @@ fresh-options
 #   fresh twe4ked/dotfiles shell/zsh/zsh-syntax-highlighting.zsh
 # fresh-options
 
-# fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
+fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
 
 # fresh zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.zsh --file=vendor/zsh-syntax-highlighting.zsh
 # fresh zsh-users/zsh-syntax-highlighting highlighters/main/main-highlighter.zsh --file=vendor/highlighters/main/main-highlighter.zsh
@@ -48,8 +48,10 @@ fresh-options
 fresh-options --bin
   fresh 'bin/*'
   fresh twe4ked/catacomb bin/catacomb
+  fresh twe4ked/twitter-whois bin/twitter-whois
   fresh defunkt/repl bin/repl
-  # fresh holman/spark spark
+  fresh pengwynn/dotfiles bin/brew-brewfile
+  fresh pengwynn/dotfiles bin/git-ci
 fresh-options
 
 # VIM
@@ -82,6 +84,12 @@ fresh-options
 # fresh-options --file=~/.emacs.d/config.org --marker='# '
 #   fresh emacs/\*.org
 # fresh-options
+
+# WORK SPECIFIC
+if [[ "$(hostname -s)" == "jeffs-mbp" ]]; then
+  fresh systems/moz/shell.sh --marker
+  fresh systems/moz/gitconfig.local --file=~/.gitconfig.local
+fi
 
 init_vim() {
   if which vim &> /dev/null && ! [ -d $HOME/.vim/bundle/vundle ]; then

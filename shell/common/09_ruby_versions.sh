@@ -4,12 +4,12 @@
 # fi
 
 if [ -e /usr/local/share/chruby/chruby.sh ]; then
-  echo Enabling chruby...
+  # If chefdk is installed, make it chruby visible
+  if [[ -d /opt/chefdk ]]; then
+    ln -s /opt/chefdk/embedded ~/.rubies
+  fi
+
   source /usr/local/share/chruby/chruby.sh
   source /usr/local/share/chruby/auto.sh
-
-  RUBIES+=(
-    /opt/chefdk/embedded
-  )
 
 fi

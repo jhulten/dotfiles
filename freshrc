@@ -87,7 +87,7 @@ fresh-options
 
 # WORK SPECIFIC
 if [[ "$(hostname -s)" == "jeffs-mbp" ]]; then
-  fresh systems/moz/shell.sh --marker
+  fresh systems/moz/shell.sh
   fresh systems/moz/gitconfig.local --file=~/.gitconfig.local
 fi
 

@@ -17,6 +17,8 @@ fresh shell/common/\*
 # fresh rupa/z z.sh
 fresh nojhan/liquidprompt liquidprompt
 
+fresh nojhan/liquidprompt . --file=~/.liquidprompt/
+
 # CONFIG FILES
 fresh-options --file
   fresh config/\*

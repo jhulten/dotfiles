@@ -15,7 +15,7 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 fresh shell/aliases/\*
 fresh shell/common/\*
 # fresh rupa/z z.sh
-#fresh nojhan/liquidprompt liquidprompt
+# fresh nojhan/liquidprompt liquidprompt
 
 # CONFIG FILES
 fresh-options --file

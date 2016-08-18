@@ -6,8 +6,9 @@
 if [ -e /usr/local/share/chruby/chruby.sh ]; then
   # If chefdk is installed, make it chruby visible
   if [[ -d /opt/chefdk ]]; then
-    if [ ! -e ~/.rubies/chefdk ]
-    ln -s /opt/chefdk/embedded ~/.rubies/chefdk
+    if [ ! -e ~/.rubies/chefdk ]; then
+      ln -s /opt/chefdk/embedded ~/.rubies/chefdk
+    fi
   fi
 
   source /usr/local/share/chruby/chruby.sh

@@ -14,8 +14,7 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 # Common Shell (~/.fresh/build/shell.sh)
 fresh shell/aliases/\*
 fresh shell/common/\*
-# fresh rupa/z z.sh
-fresh nojhan/liquidprompt liquidprompt
+fresh rupa/z z.sh
 
 fresh nojhan/liquidprompt . --file=~/.liquidprompt/
 

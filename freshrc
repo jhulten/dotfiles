@@ -54,7 +54,6 @@ fresh-options --bin
   fresh pengwynn/dotfiles bin/brew-brewfile
   fresh pengwynn/dotfiles bin/git-ci
   fresh pengwynn/dotfiles bin/tmux-github-status
-  fresh pengwynn/dotfiles bin/git-ci
   fresh pengwynn/dotfiles bin/git-wtf
 fresh-options
 

@@ -25,6 +25,8 @@ fresh-options --file
   fresh jasoncodes/dotfiles config/inputrc
 fresh-options
 
+fresh config/git-templates --file=~/.git-templates/
+
 # BASHRC
 fresh-options --file=~/.bashrc --marker
   fresh freshshell/fresh contrib/source-build.sh

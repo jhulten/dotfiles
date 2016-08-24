@@ -40,6 +40,8 @@
 	assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
 	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 
+[init]
+	templatedir = ~/.git-templates
 
 [color]
 	diff = auto

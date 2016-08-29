@@ -15,6 +15,7 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 fresh shell/aliases/\*
 fresh shell/common/\*
 fresh rupa/z z.sh
+fresh shell/secrets.sh.asc --filter="gpg"
 
 fresh nojhan/liquidprompt . --file=~/.liquidprompt/
 

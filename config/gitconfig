@@ -1,11 +1,14 @@
 [user]
 	email = jhulten@gmail.com
 	name = Jeffrey Hulten
-  signingkey = E5C5C41A
+  signingkey = 9CA2E0C217A1468B4D66F87C911510C7E5C5C41A
 [include]
   path = .gitconfig.local
 [alias]
 	ci = commit --verbose
+	cip = commit --verbose -p
+	cis = commit --verbose --signoff
+	cisp = commit --verbose --signoff -p
 	co = checkout
 	st = status
 	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"

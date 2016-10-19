@@ -95,6 +95,7 @@ fresh-options
 if [[ "$(hostname -s)" == "jeffs-mbp" ]]; then
   fresh systems/moz/shell.sh
   fresh systems/moz/gitconfig.local --file=~/.gitconfig.local
+  fresh systems/moz/knife.rb --file=~/.chef/knife.rb
 fi
 
 init_vim() {

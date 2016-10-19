@@ -63,9 +63,9 @@ fresh-options
 # VIM
 fresh-options --file=~/.vimrc --marker=\"
   fresh vim/config/leader.vim
-  fresh twe4ked/dotfiles vim/vundle_before.vim
+  fresh twe4ked/dotfiles vim/vundle_before.vim --ref=0f47bfef2ec9202c3100d7563d72f0b3540bd425
   fresh vim/bundles.vim
-  fresh twe4ked/dotfiles vim/vundle_after.vim
+  fresh twe4ked/dotfiles vim/vundle_after.vim --ref=0f47bfef2ec9202c3100d7563d72f0b3540bd425
   fresh vim/config/color.vim
   fresh vim/config/indent.vim
   fresh vim/config/statusline.vim

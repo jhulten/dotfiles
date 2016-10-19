@@ -92,7 +92,7 @@ fresh-options
 # fresh-options
 
 # WORK SPECIFIC
-if [[ "$(hostname -s)" == "jeffs-mbp" ]]; then
+if [[ "$(hostname -s)" == "jeffrey-mbp" ]]; then
   fresh systems/moz/shell.sh
   fresh systems/moz/gitconfig.local --file=~/.gitconfig.local
   fresh systems/moz/knife.rb --file=~/.chef/knife.rb

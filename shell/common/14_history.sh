@@ -5,4 +5,6 @@ HISTTIMEFORMAT='%F %T '
 HISTCONTROL=ignorespace
 HISTIGNORE='bg:fg:history'
 
-export PROMPT_COMMAND="history -a; history -c; history -r"
+if ! [[ "$PROMPT_COMMAND" =~ history ]]; then
+  PROMPT_COMMAND="history -a; history -c; history -r;$PROMPT_COMMAND";
+fi

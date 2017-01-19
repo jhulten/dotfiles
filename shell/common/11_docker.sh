@@ -9,7 +9,7 @@
 
 if which docker-machine > /dev/null; then
   if docker-machine ls | grep default > /dev/null; then
-    if [[ "$(docker-machine status default)" -ne "Running" ]]; then
+    if [[ ! docker-machine status default | grep Running ]]; then
       echo 'starting default docker-machine'
       docker-machine start default
     fi

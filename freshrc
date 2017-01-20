@@ -82,13 +82,9 @@ fresh-options --file=~/.vimrc --marker=\"
 fresh-options
 
 # EMACS
-# fresh-options --file=~/.emacs.d/init.el --marker=';;'
-#   fresh emacs/\*.el
-# fresh-options
-#
-# fresh-options --file=~/.emacs.d/config.org --marker='# '
-#   fresh emacs/\*.org
-# fresh-options
+fresh emacs/init.el --file=~/.emacs.d/init.el
+fresh emacs/config.org --file=~/.emacs.d/config.org
+fresh emacs/secrets.el.asc --file=~/.emacs.d/secrets.el --filter="keybase pgp decrypt"
 
 # WORK SPECIFIC
 if [[ "$(hostname -s)" == "jeffrey-mbp" ]]; then

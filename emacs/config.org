@@ -1,0 +1,180 @@
+#+TITLE: Jeffrey Hulten's Emacs configuration
+#+OPTIONS: toc:4 h:4
+
+* About this file
+   :PROPERTIES:
+   :CUSTOM_ID: babel-init
+   :END:
+<<babel-init>>
+
+Inspired by the [[http://eschulte.me/emacs24-starter-kit/#installation][Emacs Starter Kit]] and
+[[https://github.com/sachac/.emacs.d/blob/master/Sacha.org][Sacha Chua's Emacs configuration]],
+I set up my configuration file using Org-babel. You could load it with =(org-babel-load-file
+"/path/to/file")=, changing the path appropriately, but you'll
+probably want to tweak it extensively first.
+
+* Emacs Initialization
+
+** Personal information
+
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "Jeffrey Hulten"
+      user-mail-address "jhulten@gmail.com")
+
+(when (string-match "moz\.com" system-name)
+  (setq user-mail-address "jeffrey@moz.com"))
+#+END_SRC
+
+** Customization File
+
+Keep emacs Custom-settings in separate file
+
+#+BEGIN_SRC emacs-lisp
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
+
+(load custom-file)
+
+#+END_SRC
+
+** Secrets
+
+#+BEGIN_SRC emacs-lisp
+
+(setq secrets-file (expand-file-name "secrets.el" user-emacs-directory))
+
+(unless (file-exists-p secrets-file)
+  (write-region "" nil secrets-file))
+
+(load secrets-file)
+
+#+END_SRC
+
+** Packages
+
+This sets up the emacs packaging system and the package archives.
+
+#+BEGIN_SRC emacs-lisp
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+(package-initialize)
+#+END_SRC
+
+Fetch the list of packages available.
+
+#+BEGIN_SRC emacs-lisp
+(unless package-archive-contents
+  (package-refresh-contents))
+#+END_SRC
+
+
+** Install packages if necessary
+
+ELPA makes it easy to install packages without tracking down all the
+different websites. Let's define a function that makes it easy to
+install packages. I don't actually use this a lot any more, but it can
+be handy.
+
+#+begin_src emacs-lisp
+(defun jh/package-install (package &optional repository)
+  "Install PACKAGE if it has not yet been installed.
+If REPOSITORY is specified, use that.
+From https://github.com/sachac/.emacs.d"
+  (unless (package-installed-p package)
+    (let ((package-archives (if repository
+                                (list (assoc repository package-archives))
+                              package-archives)))
+    (package-install package))))
+#+end_src
+
+** Activate `use-package`
+
+The [use-package](https://github.com/jwiegley/use-package) emacs package makes setting up package configurations way cleaner.
+
+#+begin_src emacs-lisp
+
+(jh/package-install 'use-package)
+(eval-when-compile
+  (require 'use-package))
+
+#+end_src
+
+** Diminish Minor Modes
+
+#+begin_src emacs-lisp
+
+(jh/package-install 'diminish)
+(require 'diminish)
+
+#+end_src
+
+** Install bind-key for use-package
+
+#+begin_src emacs-lisp
+
+(jh/package-install 'bind-key)
+(require 'bind-key)
+
+#+end_src
+
+* UI
+
+** Splash Screen
+
+No thanks...
+
+#+BEGIN_SRC emacs-lisp
+
+(setq inhibit-startup-message t)
+
+#+END_SRC
+
+
+
+** Theme
+
+I prefer the dark solarized theme for most of my character interfaces (terminal, emacs, etc.)
+
+#+BEGIN_SRC emacs-lisp
+(or (package-installed-p 'solarized-theme)
+  (package-install 'solarized-theme))
+
+(load-theme 'solarized-dark t)
+#+END_SRC
+
+** Menubar, Toolbar, and Scrollbar
+
+You don't need menubar (except on OSX), toolbar nor scrollbar
+
+#+BEGIN_SRC emacs-lisp
+(and (fboundp 'menu-bar-mode)
+     (not *is-a-mac*)
+     (menu-bar-mode -1))
+(dolist (mode '(tool-bar-mode scroll-bar-mode))
+  (when (fboundp mode) (funcall mode -1)))
+#+END_SRC
+
+* Backups
+
+Disk space is cheap. Save lots.
+
+#+BEGIN_SRC emacs-lisp
+
+(setq backup-by-copying t)
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq delete-old-versions t)
+(setq kept-new-versions 6)
+(setq kept-old-versions 2)
+(setq version-control t)
+(setq vc-make-backup-files t)
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
+
+#+END_SRC

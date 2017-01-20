@@ -9,13 +9,11 @@
 
 if which docker-machine > /dev/null; then
   if docker-machine ls | grep default > /dev/null; then
-    if [[ ! docker-machine status default | grep Running ]]; then
-      echo 'starting default docker-machine'
-      docker-machine start default
-    fi
-
+    docker-machine status default | grep Running || echo 'starting default docker-machine' && docker-machine start default
     eval $(docker-machine env default)
   else
     echo 'docker-machine installed, but no default machine found'
   fi
+else
+  echo 'docker-machine not installed, skipping...'
 fi

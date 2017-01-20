@@ -54,7 +54,6 @@ fresh-options --bin
   fresh twe4ked/catacomb bin/catacomb
   fresh twe4ked/twitter-whois bin/twitter-whois
   fresh defunkt/repl bin/repl
-  # fresh pengwynn/dotfiles bin/brew-brewfile
   fresh pengwynn/dotfiles bin/git-ci
   fresh pengwynn/dotfiles bin/tmux-github-status
   fresh pengwynn/dotfiles bin/git-wtf

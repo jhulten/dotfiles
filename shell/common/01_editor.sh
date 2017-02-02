@@ -3,7 +3,7 @@
 if [ -z "$SSH_CONNECTION" ]; then
    case $platform in
    macosx*)
-       export EMACSCLIENT=/usr/local/opt/emacs/bin/emacsclient
+       export EMACSCLIENT=/usr/local/bin/emacsclient
        alias emacsclient=$EMACSCLIENT
        ;;
    *)

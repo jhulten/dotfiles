@@ -108,11 +108,12 @@ I prefer the dark solarized theme for most of my character interfaces (terminal,
 
 #+BEGIN_SRC emacs-lisp
 
-(setq color-themes '())
-(use-package color-theme-solarized
-  :config
-  (customize-set-variable 'frame-background-mode 'dark)
-  (load-theme 'solarized t))
+  (setq color-themes '())
+  (use-package color-theme-solarized
+    :config
+    (progn 
+      (customize-set-variable 'frame-background-mode 'dark)
+      (load-theme 'solarized t)))
 
 #+END_SRC
 
@@ -155,12 +156,13 @@ Enable [which-key](https://github.com/justbur/emacs-which-key).
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package which-key
-  :diminish which-key-mode
-  :config
-  (which-key-mode)
-  (which-key-setup-minibuffer)
-)
+  (use-package which-key
+    :diminish which-key-mode
+    :config
+    (progn
+      (which-key-mode)
+      (which-key-setup-minibuffer))
+  )
 
 #+END_SRC
 
@@ -191,13 +193,13 @@ It’s hard to remember keyboard shortcuts. The guide-key package pops up help a
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package guide-key
-  :defer t
-  :diminish guide-key-mode
-  :config
-  (progn
-  (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
-  (guide-key-mode 1)))  ; Enable guide-key-mode
+  (use-package guide-key
+    :defer t
+    :diminish guide-key-mode
+    :config
+    (progn
+      (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
+      (guide-key-mode 1)))  ; Enable guide-key-mode
   
 #+END_SRC
 
@@ -308,7 +310,109 @@ Disk space is cheap. Save lots.
 
 * Minor Modes
 
-** TODO EVIL MODE - Love my VIM bindings
+** DONE EVIL MODE - Love my VIM bindings
+   CLOSED: [2017-02-03 Fri 17:29]
+   :PROPERTIES:
+   :Effort:   0:30
+   :END:
+   :LOGBOOK:
+   CLOCK: [2017-02-03 Fri 17:08]--[2017-02-03 Fri 17:29] =>  0:21
+   CLOCK: [2017-02-03 Fri 12:37]--[2017-02-03 Fri 13:00] =>  0:23
+   :END:
+
+#+BEGIN_SRC emacs-lisp
+
+      (use-package evil
+	:defer t
+	:init
+	(progn
+	  (use-package evil-leader
+	    :config
+	    (progn
+	      (setq evil-leader/leader ",")
+	      (setq evil-leader/no-prefix-mode-rx '("dired-mode"
+					  "gnus-.*-mode"
+					  "magit-.*-mode"
+					  "notmuch-.*-mode"))
+	      (evil-leader/set-key "," 'evilnc-comment-operator
+				   "<SPC>" 'ace-jump-char-mode
+				   "a"  'projectile-toggle-between-implementation-and-test
+				   "b"  'ibuffer
+				   "cc" 'evilnc-comment-or-uncomment-lines
+				   "ci" 'evilnc-copy-and-comment-lines
+				   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+				   "cp" 'evilnc-comment-or-uncomment-paragraphs
+				   ;; "cr" 'comment-or-uncomment-region
+				   ;; "cv" 'evilnc-toggle-invert-comment-line-by-line
+				   "db" 'kill-buffer
+				   "df" 'delete-this-file
+				   "dw" 'jcf-delete-window
+				   "eb" 'eval-buffer
+				   "ed" 'eval-defun
+				   "ee" 'eval-expression
+				   "es" 'eval-last-sexp
+				   "er" 'eval-region
+				   "fA" 'helm-do-ag
+				   "fa" 'helm-do-ag-project-root
+				   "fb" 'helm-buffers-list
+				   "fd" 'projectile-dired
+				   "ff" 'helm-find-files
+				   "fg" 'helm-ls-git-ls
+				   "fh" 'helm-resume
+				   "fi" 'helm-semantic-or-imenu
+				   "fj" 'dired-jump
+				   "fl" 'helm-occur
+				   "fm" 'helm-mini
+				   "fp" 'helm-projectile
+				   "fs" 'eshell
+				   "fS" 'jcf-eshell-here
+				   "fy" 'helm-show-kill-ring
+				   "ga" 'git-messenger:popup-message
+				   "gb" 'magit-blame-mode
+				   "gc" 'magit-commit
+				   "gl" 'magit-log
+				   "gs" 'magit-status
+				   "hf" 'describe-function
+				   "hk" 'describe-key
+				   "hm" 'describe-mode
+				   "hp" 'describe-package
+				   "hv" 'describe-variable
+				   "i" 'ielm
+				   "oa" 'org-agenda
+				   "oc" 'org-capture
+				   "pL" 'package-list-packages-no-fetch
+				   "pa" 'helm-projectile-ag
+				   "pb" 'helm-projectile-switch-to-buffer
+				   "pe" 'helm-projectile-switch-to-eshell
+				   "pf" 'helm-projectile-find-file-dwim
+				   "pi" 'package-install
+				   "pl" 'package-list-packages
+				   "pp" 'helm-projectile-switch-project
+				   "rf" 'rename-buffer-and-file
+				   "sf" 'delete-other-windows
+				   "sj" 'switch-window ; ace-jump will kick in
+				   "w"  'save-buffer
+				   "x"  'execute-extended-command))))
+	:config
+	(progn
+	  (global-evil-leader-mode 1)
+	  (evil-mode 1)))
+#+END_SRC
+
+
+*** TODO evil-surround
+
+*** TODO evil-numbers
+
+
+
+
+*** TODO Org-Evil
+
+
+
+
+
 
 
 ** Winner mode - undo and redo window configuration
@@ -366,20 +470,21 @@ possible.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package flycheck
-  :if (display-graphic-p)
-  :bind ("C-c f" . flycheck-mode)
-  :config
-  (defun jh/on-flycheck-status-change (status)
-    (let ((fc-icon
-           (cond
-            ((eq status 'running) [#xF0F4])
-            ((eq status 'errored) [#xF00C])
-            ((eq status 'finished) [#xF00D]))))
-      (diminish #'flycheck-mode (concat " " fc-icon))
-      (force-mode-line-update)))
+  (use-package flycheck
+    :if (display-graphic-p)
+    :bind ("C-c f" . flycheck-mode)
+    :config
+    (progn
+      (defun jh/on-flycheck-status-change (status)
+	(let ((fc-icon
+	       (cond
+		((eq status 'running) [#xF0F4])
+		((eq status 'errored) [#xF00C])
+		((eq status 'finished) [#xF00D]))))
+	  (diminish #'flycheck-mode (concat " " fc-icon))
+	  (force-mode-line-update)))
 
-  (add-hook 'flycheck-status-changed-functions #'jh/on-flycheck-status-change))
+      (add-hook 'flycheck-status-changed-functions #'jh/on-flycheck-status-change)))
 
 #+END_SRC
 
@@ -387,26 +492,26 @@ possible.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package ag
-  :defines my-ag-keymap
-  :bind-keymap ("C-c C-a" . my-ag-map)
-  :config
+  (use-package ag
+    :defines my-ag-keymap
+    :bind-keymap ("C-c C-a" . my-ag-map)
+    :config
+    (progn
+      (setq ag-reuse-buffers t    ; Don't spam buffer list with ag buffers
+	    ag-highlight-search t ; A little fanciness
 
-  (setq ag-reuse-buffers t    ; Don't spam buffer list with ag buffers
-        ag-highlight-search t ; A little fanciness
+	    ;; Use Projectile to find the project root
+	    ag-project-root-function
+	    (lambda (d)
+	      (let ((default-directory d))
+		(projectile-project-root))))
 
-        ;; Use Projectile to find the project root
-        ag-project-root-function
-        (lambda (d)
-          (let ((default-directory d))
-            (projectile-project-root))))
+      (defvar my-ag-map
+	(let ((map (make-sparse-keymap)))
+	  (define-key map (kbd "a") #'ag-regexp)
+	  (define-key map (kbd "p") #'ag-project-regexp)
 
-  (defvar my-ag-map
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "a") #'ag-regexp)
-      (define-key map (kbd "p") #'ag-project-regexp)
-
-      map)))
+	  map))))
 
 #+END_SRC
 
@@ -414,13 +519,15 @@ possible.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package projectile
-  :init
-  (projectile-global-mode)
-  :config
-  (define-key projectile-mode-map [remap projectile-ack] #'projectile-ag)
-  (setq projectile-completion-system 'grizzl)
-  :diminish projectile-mode)
+  (use-package projectile
+    :init
+    (progn
+      (projectile-global-mode))
+    :config
+    (progn
+      (define-key projectile-mode-map [remap projectile-ack] #'projectile-ag)
+      (setq projectile-completion-system 'grizzl))
+    :diminish projectile-mode)
 
 #+END_SRC
 
@@ -456,26 +563,26 @@ possible.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package dired-subtree
-  :init
-  (bind-keys :map dired-mode-map
-             :prefix "C-,"
-             :prefix-map dired-subtree-map
-             :prefix-docstring "Dired subtree map."
-    ("<C-i-key>" . dired-subtree-insert)
-    ("C-/" . dired-subtree-apply-filter)
-    ("C-k" . dired-subtree-remove)
-    ("C-n" . dired-subtree-next-sibling)
-    ("C-p" . dired-subtree-previous-sibling)
-    ("C-u" . dired-subtree-up)
-    ("C-d" . dired-subtree-down)
-    ("C-a" . dired-subtree-beginning)
-    ("C-e" . dired-subtree-end)
-    ("C-c" . dired-subtree-cycle)
-    ("m" . dired-subtree-mark-subtree)
-    ("u" . dired-subtree-unmark-subtree)
-    ("C-o C-f" . dired-subtree-only-this-file)
-    ("C-o C-d" . dired-subtree-only-this-directory)))
+  (use-package dired-subtree
+    :init
+    (bind-keys :map dired-mode-map
+               :prefix "C-,"
+               :prefix-map dired-subtree-map
+               :prefix-docstring "Dired subtree map."
+      ("<C-i-key>" . dired-subtree-insert)
+      ("C-/" . dired-subtree-apply-filter)
+      ("C-k" . dired-subtree-remove)
+      ("C-n" . dired-subtree-next-sibling)
+      ("C-p" . dired-subtree-previous-sibling)
+      ("C-u" . dired-subtree-up)
+      ("C-d" . dired-subtree-down)
+      ("C-a" . dired-subtree-beginning)
+      ("C-e" . dired-subtree-end)
+      ("C-c" . dired-subtree-cycle)
+      ("m" . dired-subtree-mark-subtree)
+      ("u" . dired-subtree-unmark-subtree)
+      ("C-o C-f" . dired-subtree-only-this-file)
+      ("C-o C-d" . dired-subtree-only-this-directory)))
 
 #+END_SRC
 
@@ -557,8 +664,7 @@ possible.
 (use-package tramp
   :config
   (setq tramp-default-method "ssh"
-        tramp-persistency-file-name
-        (expand-file-name "tramp" my-tmp)))
+        tramp-persistency-file-name (expand-file-name "tramp" my-tmp)))
 
 #+END_SRC
 
@@ -581,13 +687,14 @@ possible.
     :defer 2
     :bind ("C-." . company-complete)
     :config
-    (global-company-mode t)
-    (add-hook 'after-init-hook 'global-company-mode)
+    (progn
+      (global-company-mode t)
+      (add-hook 'after-init-hook 'global-company-mode)
 
-    (setq company-begin-commands '(self-insert-command))
-    (setq company-idle-delay .3)
-    (setq company-tooltip-align-annotations 't)
-    (setq company-tooltip-limit 20))
+      (setq company-begin-commands '(self-insert-command))
+      (setq company-idle-delay .3)
+      (setq company-tooltip-align-annotations 't)
+      (setq company-tooltip-limit 20)))
 
 #+END_SRC
 
@@ -635,26 +742,23 @@ possible.
 
 #+BEGIN_SRC emacs-lisp
 
- (use-package org
-   :ensure org-plus-contrib
-   :mode ("\\.org\\'" . org-mode)
-   :defer t
-   :bind (("C-c l" . org-store-link)
-          ("C-c c" . org-capture)
-          ("C-c b" . org-iswitchb)
-          ("C-c C-w" . org-refile))
-   :config
-   (setq org-ctrl-k-protect-subtree t)
-   (setq org-id-method 'uuidgen)
-   (setq org-special-ctrl-k t)
-   (setq org-special-ctrl-a t)
-   (setq org-special-ctrl-e t)
-   (setq org-src-fontify-natively t)
+   (use-package org
+     :ensure org-plus-contrib
+     :mode ("\\.org\\'" . org-mode)
+     :bind (("C-c l" . org-store-link)
+            ("C-c c" . org-capture)
+            ("C-c b" . org-iswitchb)
+            ("C-c C-w" . org-refile))
+     :config
+     (progn
+       (setq org-ctrl-k-protect-subtree t)
+       (setq org-id-method 'uuidgen)
+       (setq org-special-ctrl-k t)
+       (setq org-special-ctrl-a t)
+       (setq org-special-ctrl-e t)
+       (setq org-src-fontify-natively t)
 
-   (run-at-time "10 min" 600 'org-save-all-org-buffers)
-
-
-)
+       (run-at-time "10 min" 600 'org-save-all-org-buffers)))
 
 #+END_SRC
 
@@ -727,78 +831,80 @@ possible.
       :defer t
       :bind (("C-c a" . org-agenda))
       :init
-      (setq org-directory (expand-file-name "org" my-personal-dir))
-      (setq org-default-notes-file (expand-file-name "todo.org"  org-directory))
-      (setq org-default-bookmarks-file (expand-file-name "bookmarks.org" org-directory))
-      (defvar org-default-journal-file (expand-file-name "journal.org" org-directory)
-	"File to dump journal entries into")
-  
-      :config 
-      (setq org-agenda-files (list org-directory))
-      (setq org-agenda-prefix-format
-	    '((agenda . " %i %-12:c%?-12t% s")
-	      (timeline . "  % s")
-	      (todo . " %i %-12:T")
-	      (tags . " %i %-12:T")
-	      (search . " %i %-12:T")))
+      (progn
+	(setq org-directory (expand-file-name "org" my-personal-dir))
+	(setq org-default-notes-file (expand-file-name "todo.org"  org-directory))
+	(setq org-default-bookmarks-file (expand-file-name "bookmarks.org" org-directory))
+	(defvar org-default-journal-file (expand-file-name "journal.org" org-directory)
+	  "File to dump journal entries into"))
 
-      ;; Sorting order for tasks on the agenda
-      (setq org-agenda-sorting-strategy
-	    (quote ((agenda habit-down time-up user-defined-up effort-up category-keep)
-		    (todo category-up effort-up)
-		    (tags category-up effort-up)
-		    (search category-up))))
+      :config
+      (progn
+	(setq org-agenda-files (list org-directory))
+	(setq org-agenda-prefix-format
+	      '((agenda . " %i %-12:c%?-12t% s")
+		(timeline . "  % s")
+		(todo . " %i %-12:T")
+		(tags . " %i %-12:T")
+		(search . " %i %-12:T")))
 
-      (setq org-agenda-custom-commands
-	    '(("O" "Office block agenda"
-	       ((agenda "" ((org-agenda-ndays 1)))
-		;; limits the agenda display to a single day
-		(tags-todo "@work|moz|phone")
-		(todo "TODO" ((org-agenda-files '("~/Dropbox/emacs/org/todo.org"))))
-		;; limits the tag search to the file inbox.org
-		(todo "BLOCKED"))
-	       ((org-agenda-compact-blocks t)))
-	      ("A" "Custom agenda"
-	       ((agenda "")
-		(org-time-budgets-for-agenda)))
-	      ("b" "Projects"
-	       ((todo "PROJECT")))
-	      ("W" "Weekly Review"
-	       ((agenda "" ((org-agenda-ndays 7))) ;; review upcoming deadlines and appointments
-		;; type "l" in the agenda to review logged items
-		(stuck "") ;; review stuck projects as designated by org-stuck-projects
-		(todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
-		(todo "MAYBE") ;; review someday/maybe items
-		(todo "WAITING")))
-	      ("d" "Upcoming deadlines" agenda ""
-	       ((org-agenda-time-grid nil)
-		(org-deadline-warning-days 365)
-		(org-agenda-entry-types '(:deadline))))
-	      ("c" "Calendar" agenda ""
-	       ((org-agenda-ndays 7)
-		(org-agenda-start-on-weekday 0)
-		(org-agenda-time-grid nil)
-		(org-agenda-repeating-timestamp-show-all t)
-		(org-agenda-entry-types '(:timestamp :sexp))))))
-    
-      (setq org-agenda-dim-blocked-tasks t)
-      (setq org-agenda-show-all-dates t)
-      (setq org-agenda-span 'week)
-      (setq org-agenda-compact-blocks t)
-      (setq org-agenda-repeating-timestamp-show-all t)
-      (setq org-agenda-show-all-dates t)
-      (setq org-agenda-skip-deadline-if-done t)
-      (setq org-agenda-skip-scheduled-if-done t)
-      (setq org-agenda-start-on-weekday 1)
-      (setq org-agenda-start-with-log-mode t)
-      (setq org-agenda-tags-column -100)
-      (setq org-agenda-time-grid (quote ((daily today remove-match)
-                                  #("----------------" 0 16 (org-heading t))
-                                  (0900 1100 1300 1500 1700 1900))))
-      (setq org-agenda-todo-ignore-deadlines nil)
-      (setq org-agenda-todo-ignore-scheduled t)
-      (setq org-agenda-todo-ignore-timestamp t)
-      (setq org-agenda-todo-ignore-with-date nil)
+	;; Sorting order for tasks on the agenda
+	(setq org-agenda-sorting-strategy
+	      (quote ((agenda habit-down time-up user-defined-up effort-up category-keep)
+		      (todo category-up effort-up)
+		      (tags category-up effort-up)
+		      (search category-up))))
+
+	(setq org-agenda-custom-commands
+	      '(("O" "Office block agenda"
+		 ((agenda "" ((org-agenda-ndays 1)))
+		  ;; limits the agenda display to a single day
+		  (tags-todo "@work|moz|phone")
+		  (todo "TODO" ((org-agenda-files '("~/Dropbox/emacs/org/todo.org"))))
+		  ;; limits the tag search to the file inbox.org
+		  (todo "BLOCKED"))
+		 ((org-agenda-compact-blocks t)))
+		("A" "Custom agenda"
+		 ((agenda "")
+		  (org-time-budgets-for-agenda)))
+		("b" "Projects"
+		 ((todo "PROJECT")))
+		("W" "Weekly Review"
+		 ((agenda "" ((org-agenda-ndays 7))) ;; review upcoming deadlines and appointments
+		  ;; type "l" in the agenda to review logged items
+		  (stuck "") ;; review stuck projects as designated by org-stuck-projects
+		  (todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
+		  (todo "MAYBE") ;; review someday/maybe items
+		  (todo "WAITING")))
+		("d" "Upcoming deadlines" agenda ""
+		 ((org-agenda-time-grid nil)
+		  (org-deadline-warning-days 365)
+		  (org-agenda-entry-types '(:deadline))))
+		("c" "Calendar" agenda ""
+		 ((org-agenda-ndays 7)
+		  (org-agenda-start-on-weekday 0)
+		  (org-agenda-time-grid nil)
+		  (org-agenda-repeating-timestamp-show-all t)
+		  (org-agenda-entry-types '(:timestamp :sexp))))))
+
+	(setq org-agenda-dim-blocked-tasks t)
+	(setq org-agenda-show-all-dates t)
+	(setq org-agenda-span 'week)
+	(setq org-agenda-compact-blocks t)
+	(setq org-agenda-repeating-timestamp-show-all t)
+	(setq org-agenda-show-all-dates t)
+	(setq org-agenda-skip-deadline-if-done t)
+	(setq org-agenda-skip-scheduled-if-done t)
+	(setq org-agenda-start-on-weekday 1)
+	(setq org-agenda-start-with-log-mode t)
+	(setq org-agenda-tags-column -100)
+	(setq org-agenda-time-grid (quote ((daily today remove-match)
+					   #("----------------" 0 16 (org-heading t))
+					   (0900 1100 1300 1500 1700 1900))))
+	(setq org-agenda-todo-ignore-deadlines nil)
+	(setq org-agenda-todo-ignore-scheduled t)
+	(setq org-agenda-todo-ignore-timestamp t)
+	(setq org-agenda-todo-ignore-with-date nil))
   )
 
 #+END_SRC
@@ -850,22 +956,24 @@ possible.
       ("C-c j" . org-clock-goto)
       ("C-c C-x C-o" . org-clock-out))
     :init
-    (setq org-expiry-inactive-timestamps t)
-    (setq org-clock-idle-time nil)
-    (setq org-log-done 'time)
-    (setq org-clock-continuously nil)
-    (setq org-clock-persist t)
-    (setq org-clock-in-switch-to-state "STARTED")
-    (setq org-clock-in-resume t)
-    (setq org-show-notification-handler 'message)
-    (setq org-clock-report-include-clocking-task t)
-    (setq org-clock-history-length 32)
-    (setq org-log-into-drawer "LOGBOOK")
-    (setq org-clock-into-drawer 1)
-    (setq org-clock-out-remove-zero-time-clocks t)
-    (setq org-clock-persistence-insinuate t)
+    (progn
+      (setq org-expiry-inactive-timestamps t)
+      (setq org-clock-idle-time nil)
+      (setq org-log-done 'time)
+      (setq org-clock-continuously nil)
+      (setq org-clock-persist t)
+      (setq org-clock-in-switch-to-state "STARTED")
+      (setq org-clock-in-resume t)
+      (setq org-show-notification-handler 'message)
+      (setq org-clock-report-include-clocking-task t)
+      (setq org-clock-history-length 32)
+      (setq org-log-into-drawer "LOGBOOK")
+      (setq org-clock-into-drawer 1)
+      (setq org-clock-out-remove-zero-time-clocks t)
+      (setq org-clock-persistence-insinuate t))
     :config
-    (org-clock-persistence-insinuate))
+    (progn
+      (org-clock-persistence-insinuate)))
 
 #+END_SRC
 
@@ -903,14 +1011,15 @@ From http://orgmode.org/worg/org-hacks.html
 
   (use-package org-capture
     :ensure org-plus-contrib
-    :defer t
     :bind (("C-c c" . org-capture))
     :config
-    (setq org-capture-templates
-	  '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-	     "* TODO %?\n  %i\n  %a")
-	    ("j" "Journal" entry (file+datetree org-default-journal-file)
-	     "* %?\nEntered on %U\n  %i\n  %a"))))
+    (progn
+      (add-to-list 'org-capture-templates
+		   '("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
+		     "* TODO %?\n  %i\n  %a"))
+      (add-to-list 'org-capture-templates
+		   '("j" "Journal" entry (file+datetree org-default-journal-file)
+		     "* %?\nEntered on %U\n  %i\n  %a"))))
 
 #+END_SRC
 
@@ -949,14 +1058,14 @@ From http://orgmode.org/worg/org-hacks.html
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package org-crypt
-  :ensure org-plus-contrib
-  :defer t
-  :config
-  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-  (setq org-crypt-key "E5C5C41A")
-  (setq org-crypt-disable-auto-save nil)
-  (org-crypt-use-before-save-magic))
+  (use-package org-crypt
+    :ensure org-plus-contrib
+    :config
+    (progn
+      (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+      (setq org-crypt-key "E5C5C41A")
+      (setq org-crypt-disable-auto-save nil)
+      (org-crypt-use-before-save-magic)))
 
 #+END_SRC
 

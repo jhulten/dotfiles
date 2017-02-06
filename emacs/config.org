@@ -1084,6 +1084,23 @@ From http://orgmode.org/worg/org-hacks.html
 
 *** TODO Source Code
 
+
+*** TODO Org-Projectile
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package org-projectile
+  :bind (("C-c n p" . org-projectile:project-todo-completing-read))
+  :config
+  (progn
+    (org-projectile:per-repo)
+    (setq org-projectile:projects-file 
+          "TODO.org")
+    (setq org-agenda-files (append org-agenda-files (org-projectile:todo-files)))
+    (add-to-list 'org-capture-templates (org-projectile:project-todo-entry "p"))))
+
+#+END_SRC
+
 *** Miscellaneous
 **** Crypto
 

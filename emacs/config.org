@@ -774,7 +774,22 @@ possible.
       (setq org-src-fontify-natively t)
 
       (run-at-time "10 min" 600 'org-save-all-org-buffers)
+      (evil-leader/set-key-for-mode 'org-mode
+	"oh" 'org-insert-heading
+	"ol" 'org-babel-load-file
+	"os" 'org-sort-list
+	"ot" 'org-todo
+	"oT" 'my/evil-org-insert-todo
+	"obt" 'org-babel-tangle)
+    
       ))
+
+  ;; From https://github.com/jcf/emacs.d/blob/master/init-evil.org
+  (defun my/evil-org-insert-todo ()
+    "Insert a new TODO heading, and switch to insert mode."
+    (interactive)
+    (org-insert-todo-heading nil)
+    (evil-insert 0))
 
 #+END_SRC
 

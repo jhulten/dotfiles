@@ -990,7 +990,8 @@ possible.
       (setq org-log-done 'time)
       (setq org-clock-continuously nil)
       (setq org-clock-persist t)
-      (setq org-clock-in-switch-to-state "STARTED")
+      (setq org-clock-in-switch-to-state 'my/clock-in-set-state)
+      (setq my/clock-in-ignore-state-list '("PHONE" "MEETING" "PROJECT"))
       (setq org-clock-in-resume t)
       (setq org-show-notification-handler 'message)
       (setq org-clock-report-include-clocking-task t)
@@ -1002,6 +1003,12 @@ possible.
     :config
     (progn
       (org-clock-persistence-insinuate)))
+
+  (defvar my/clock-in-ignore-state-list nil "List of states to ignore in clock-in-switch-to-state")
+
+  (defun my/clock-in-set-state (state)
+    (cond ((member state  my/clock-in-ignore-state-list) state)
+          (t "STARTED")))
 
 #+END_SRC
 
@@ -1121,8 +1128,8 @@ From http://orgmode.org/worg/org-hacks.html
 
 **** Templates
 
-
 * Custom Functions
+
 
 #+BEGIN_SRC emacs-lisp
 

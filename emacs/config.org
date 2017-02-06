@@ -318,81 +318,81 @@ Disk space is cheap. Save lots.
 
 #+BEGIN_SRC emacs-lisp
 
-      (use-package evil
-	:defer t
-	:init
-	(progn
-	  (use-package evil-leader
-	    :config
-	    (progn
-	      (setq evil-leader/leader ",")
-	      (setq evil-leader/no-prefix-mode-rx '("dired-mode"
-					  "gnus-.*-mode"
-					  "magit-.*-mode"
-					  "notmuch-.*-mode"))
-	      (evil-leader/set-key "," 'evilnc-comment-operator
-				   "<SPC>" 'ace-jump-char-mode
-				   "a"  'projectile-toggle-between-implementation-and-test
-				   "b"  'ibuffer
-				   "cc" 'evilnc-comment-or-uncomment-lines
-				   "ci" 'evilnc-copy-and-comment-lines
-				   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-				   "cp" 'evilnc-comment-or-uncomment-paragraphs
-				   ;; "cr" 'comment-or-uncomment-region
-				   ;; "cv" 'evilnc-toggle-invert-comment-line-by-line
-				   "db" 'kill-buffer
-				   "df" 'delete-this-file
-				   "dw" 'jcf-delete-window
-				   "eb" 'eval-buffer
-				   "ed" 'eval-defun
-				   "ee" 'eval-expression
-				   "es" 'eval-last-sexp
-				   "er" 'eval-region
-				   "fA" 'helm-do-ag
-				   "fa" 'helm-do-ag-project-root
-				   "fb" 'helm-buffers-list
-				   "fd" 'projectile-dired
-				   "ff" 'helm-find-files
-				   "fg" 'helm-ls-git-ls
-				   "fh" 'helm-resume
-				   "fi" 'helm-semantic-or-imenu
-				   "fj" 'dired-jump
-				   "fl" 'helm-occur
-				   "fm" 'helm-mini
-				   "fp" 'helm-projectile
-				   "fs" 'eshell
-				   "fS" 'jcf-eshell-here
-				   "fy" 'helm-show-kill-ring
-				   "ga" 'git-messenger:popup-message
-				   "gb" 'magit-blame-mode
-				   "gc" 'magit-commit
-				   "gl" 'magit-log
-				   "gs" 'magit-status
-				   "hf" 'describe-function
-				   "hk" 'describe-key
-				   "hm" 'describe-mode
-				   "hp" 'describe-package
-				   "hv" 'describe-variable
-				   "i" 'ielm
-				   "oa" 'org-agenda
-				   "oc" 'org-capture
-				   "pL" 'package-list-packages-no-fetch
-				   "pa" 'helm-projectile-ag
-				   "pb" 'helm-projectile-switch-to-buffer
-				   "pe" 'helm-projectile-switch-to-eshell
-				   "pf" 'helm-projectile-find-file-dwim
-				   "pi" 'package-install
-				   "pl" 'package-list-packages
-				   "pp" 'helm-projectile-switch-project
-				   "rf" 'rename-buffer-and-file
-				   "sf" 'delete-other-windows
-				   "sj" 'switch-window ; ace-jump will kick in
-				   "w"  'save-buffer
-				   "x"  'execute-extended-command))))
+  (use-package evil
+    :defer t
+    :init
+    (progn
+      (use-package evil-leader
 	:config
 	(progn
-	  (global-evil-leader-mode 1)
-	  (evil-mode 1)))
+	  (setq evil-leader/leader ",")
+	  (setq evil-leader/no-prefix-mode-rx '("dired-mode"
+				      "gnus-.*-mode"
+				      "magit-.*-mode"
+				      "notmuch-.*-mode"))
+	  (evil-leader/set-key "," 'evilnc-comment-operator
+			       "<SPC>" 'ace-jump-char-mode
+			       "a"  'projectile-toggle-between-implementation-and-test
+			       "b"  'ibuffer
+			       "cc" 'evilnc-comment-or-uncomment-lines
+			       "ci" 'evilnc-copy-and-comment-lines
+			       "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+			       "cp" 'evilnc-comment-or-uncomment-paragraphs
+			       ;; "cr" 'comment-or-uncomment-region
+			       ;; "cv" 'evilnc-toggle-invert-comment-line-by-line
+			       "db" 'kill-buffer
+			       "df" 'delete-this-file
+			       "dw" 'jcf-delete-window
+			       "eb" 'eval-buffer
+			       "ed" 'eval-defun
+			       "ee" 'eval-expression
+			       "es" 'eval-last-sexp
+			       "er" 'eval-region
+			       "fA" 'helm-do-ag
+			       "fa" 'helm-do-ag-project-root
+			       "fb" 'helm-buffers-list
+			       "fd" 'projectile-dired
+			       "ff" 'helm-find-files
+			       "fg" 'helm-ls-git-ls
+			       "fh" 'helm-resume
+			       "fi" 'helm-semantic-or-imenu
+			       "fj" 'dired-jump
+			       "fl" 'helm-occur
+			       "fm" 'helm-mini
+			       "fp" 'helm-projectile
+			       "fs" 'eshell
+			       "fS" 'jcf-eshell-here
+			       "fy" 'helm-show-kill-ring
+			       "ga" 'git-messenger:popup-message
+			       "gb" 'magit-blame-mode
+			       "gc" 'magit-commit
+			       "gl" 'magit-log
+			       "gs" 'magit-status
+			       "hf" 'describe-function
+			       "hk" 'describe-key
+			       "hm" 'describe-mode
+			       "hp" 'describe-package
+			       "hv" 'describe-variable
+			       "i" 'ielm
+			       "oa" 'org-agenda
+			       "oc" 'org-capture
+			       "pL" 'package-list-packages-no-fetch
+			       "pa" 'helm-projectile-ag
+			       "pb" 'helm-projectile-switch-to-buffer
+			       "pe" 'helm-projectile-switch-to-eshell
+			       "pf" 'helm-projectile-find-file-dwim
+			       "pi" 'package-install
+			       "pl" 'package-list-packages
+			       "pp" 'helm-projectile-switch-project
+			       "rf" 'rename-buffer-and-file
+			       "sf" 'delete-other-windows
+			       "sj" 'switch-window ; ace-jump will kick in
+			       "w"  'save-buffer
+			       "x"  'execute-extended-command))))
+    :config
+    (progn
+      (global-evil-leader-mode 1)
+      (evil-mode 1)))
 #+END_SRC
 
 

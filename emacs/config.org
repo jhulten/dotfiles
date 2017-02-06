@@ -462,6 +462,25 @@ possible.
 
 #+END_SRC
 
+*** DONE helm-projectile
+    CLOSED: [2017-02-06 Mon 13:53]
+    :PROPERTIES:
+    :Effort:   :30
+    :END:
+    :LOGBOOK:
+    CLOCK: [2017-02-06 Mon 13:16]--[2017-02-06 Mon 13:53] =>  0:37
+    :END:
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package helm-projectile
+    :config
+    (progn
+      (helm-projectile-on)
+    ))
+
+#+END_SRC
+
 ** Flycheck - Syntax Checker
 
 #+BEGIN_SRC emacs-lisp

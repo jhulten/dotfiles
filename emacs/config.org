@@ -310,11 +310,7 @@ Disk space is cheap. Save lots.
 
 * Minor Modes
 
-** DONE EVIL MODE - Love my VIM bindings
-   CLOSED: [2017-02-03 Fri 17:29]
-   :PROPERTIES:
-   :Effort:   0:30
-   :END:
+** EVIL MODE - Love my VIM bindings
    :LOGBOOK:
    CLOCK: [2017-02-03 Fri 17:08]--[2017-02-03 Fri 17:29] =>  0:21
    CLOCK: [2017-02-03 Fri 12:37]--[2017-02-03 Fri 13:00] =>  0:23

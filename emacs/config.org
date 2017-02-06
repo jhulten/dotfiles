@@ -888,16 +888,13 @@ possible.
 
 	(setq org-agenda-custom-commands
 	      '(("O" "Office block agenda"
-		 ((agenda "" ((org-agenda-ndays 1)))
+		 ((agenda "" ((org-agenda-span 3)
+			      (org-agenda-start-on-weekday nil)))
 		  ;; limits the agenda display to a single day
 		  (tags-todo "@work|moz|phone")
-		  (todo "TODO" ((org-agenda-files '("~/Dropbox/emacs/org/todo.org"))))
+		  (todo "TODO" ((org-agenda-files org-default-notes-file)))
 		  ;; limits the tag search to the file inbox.org
-		  (todo "BLOCKED"))
-		 ((org-agenda-compact-blocks t)))
-		("A" "Custom agenda"
-		 ((agenda "")
-		  (org-time-budgets-for-agenda)))
+		  (todo "BLOCKED")))
 		("b" "Projects"
 		 ((todo "PROJECT")))
 		("W" "Weekly Review"

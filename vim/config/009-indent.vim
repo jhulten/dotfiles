@@ -13,21 +13,9 @@ set autoindent
 " Use spaces instead of tabs
 set expandtab
 
-if has("gui_gtk2")
-  set guifont=Inconsolata\ 12
-else
-  set guifont=Inconsolata:h12
-endif
-
 set ignorecase
 set vb " turns off visual bell
 set smartindent
-
-if has("gui_gtk2")
-  set guifont=Inconsolata\ 12
-else
-  set guifont=Inconsolata:h12
-endif
 
 compiler ruby
 
@@ -49,15 +37,6 @@ set grepformat=%f:%l:%m
 
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 
-nmap <silent> <leader>gs :Gstatus<cr>
-nmap <silent> <leader>ge :Gedit<cr>
-nmap <silent> <leader>gd :Gdiff<cr>
-nmap <silent> <leader>gP :Git push<cr>
-nmap <silent> <leader>gp :Git pull<cr>
-let g:Gitv_OpenHorizontal = 1
-nmap <silent> <leader>gv :Gitv<cr>
-nmap <silent> <leader>gV :Gitv --all<cr>
-
 " CSApprox
 if (&term == 'xterm')
   set t_Co=256
@@ -77,6 +56,7 @@ if has("vms")
 else
   set backup    " keep a backup file
 endif
+
 set history=500   " keep 500 lines of command line history
 set ruler   " show the cursor position all the time
 set showcmd   " display incomplete commands

@@ -7,3 +7,4 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
 elif [[ "$unamestr" == 'Darwin' ]]; then
    platform='macosx'
 fi
+echo "Platform: $platform"

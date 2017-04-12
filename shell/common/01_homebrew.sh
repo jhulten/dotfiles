@@ -1,5 +1,6 @@
 # Homebrew
-if [[ "$platform" == 'macosx' ]]; then
+
+if [ "$platform" == "macosx" ]; then
   # HOMEBREW_LOCK=/tmp/homebrew.install
   #
   # lockfile -2 -r 30 $HOMEBREW_LOCK || exit 1
@@ -12,5 +13,12 @@ if [[ "$platform" == 'macosx' ]]; then
   # rm -f $HOMEBREW_LOCK
 
   # Python Home
-  export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+  #export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    echo "enabling completions from homebrew"
+    . $(brew --prefix)/etc/bash_completion
+  fi
+else
+  echo "Skipping homebrew configuration for $platform"
 fi

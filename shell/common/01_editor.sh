@@ -11,9 +11,9 @@ if [ -z "$SSH_CONNECTION" ]; then
        ;;
    esac
    alias ec="$EMACSCLIENT -c -n"
-   export EDITOR="$EMACSCLIENT -c"
-   export ALTERNATE_EDITOR=""
+   export EDITOR="gvim"
+   export ALTERNATE_EDITOR="vim"
 else
-    export EDITOR=$(type -P emacs || type -P vim || type -P vi)
+    export EDITOR=$(type -P gvim || type -P vim || type -P vi)
 fi
 export VISUAL=$EDITOR

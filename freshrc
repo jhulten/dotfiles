@@ -34,20 +34,6 @@ fresh-options --file=~/.bashrc --marker
   fresh freshshell/fresh contrib/completion/fresh-completion.bash
 fresh-options
 
-# ZSHRC
-# fresh-options --file=~/.zshrc --marker
-#   fresh freshshell/fresh contrib/source-build.sh
-#   fresh shell/zsh/\*
-#   fresh freshshell/fresh contrib/completion/fresh-completion.zsh
-#   fresh twe4ked/dotfiles shell/zsh/zsh-syntax-highlighting.zsh
-# fresh-options
-
-fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
-
-# fresh zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.zsh --file=vendor/zsh-syntax-highlighting.zsh
-# fresh zsh-users/zsh-syntax-highlighting highlighters/main/main-highlighter.zsh --file=vendor/highlighters/main/main-highlighter.zsh
-# fresh zsh-users/zsh-syntax-highlighting highlighters/brackets/brackets-highlighter.zsh --file=vendor/highlighters/brackets/brackets-highlighter.zsh
-
 # BINARIES
 fresh-options --bin
   fresh 'bin/*'
@@ -61,30 +47,17 @@ fresh-options
 
 # VIM
 fresh-options --file=~/.vimrc --marker=\"
-  fresh vim/config/leader.vim
-  fresh twe4ked/dotfiles vim/vundle_before.vim --ref=0f47bfef2ec9202c3100d7563d72f0b3540bd425
-  fresh vim/bundles.vim
-  fresh twe4ked/dotfiles vim/vundle_after.vim --ref=0f47bfef2ec9202c3100d7563d72f0b3540bd425
-  fresh vim/config/color.vim
-  fresh vim/config/indent.vim
-  fresh vim/config/statusline.vim
-  fresh vim/config/suffixes.vim
-  fresh vim/config/syntastic.vim
-  fresh vim/config/fuzzy.vim
-  fresh vim/config/taglist.vim
-  fresh vim/config/vimclojure.vim
-  fresh vim/config/linestyle.vim
-  fresh vim/config/togglewrap.vim
-  fresh vim/config/buffers.vim
-  fresh vim/config/tabs.vim
-  fresh vim/config/keymaps.vim
-  fresh vim/config/ctrlp.vim
+  fresh vim/config/\*.vim
 fresh-options
 
 # EMACS
 fresh emacs/init.el --file=~/.emacs.d/init.el
 fresh emacs/config.org --file=~/.emacs.d/config.org
 fresh emacs/secrets.el.asc --file=~/.emacs.d/secrets.el --filter="keybase pgp decrypt"
+
+# Tools
+
+fresh hakimel/reveal.js . --file=~/.tools/reveal.js/
 
 # WORK SPECIFIC
 if [[ "$(hostname -s)" == "jeffrey-mbp" ]]; then
@@ -105,6 +78,7 @@ init_brew() {
 
 fresh_after_build() {
   init_vim
+
   if command -v brew >/dev/null 2>&1; then
     init_brew
   fi

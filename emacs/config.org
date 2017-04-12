@@ -33,7 +33,8 @@ extensively first.
 
 ** Reloading the init file
 
-Especially in development, I need to reload my init.el and the generated files from org-babel. This makes that easier.
+Especially in development, I need to reload my init.el and the
+generated files from org-babel. This makes that easier.
 
 #+BEGIN_SRC emacs-lisp
 
@@ -62,7 +63,8 @@ Keep emacs Custom-settings in separate file
 
 ** Secrets
 
-Seems we always end up with secrets we need to store in flat files. This picks up an encrypted file managed by freshshell.
+Seems we always end up with secrets we need to store in flat
+files. This picks up an encrypted file managed by freshshell.
 
 #+BEGIN_SRC emacs-lisp
 (setq secrets-file (expand-file-name "secrets.el" user-emacs-directory))
@@ -94,7 +96,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 ** Splash Screen
 
-No thanks...
+No thanks.
 
 #+BEGIN_SRC emacs-lisp
 
@@ -114,6 +116,15 @@ I prefer the dark solarized theme for most of my character interfaces (terminal,
     (progn 
       (customize-set-variable 'frame-background-mode 'dark)
       (load-theme 'solarized t)))
+
+#+END_SRC
+
+
+** Visible Bell
+
+#+BEGIN_SRC emacs-lisp
+
+(setq visible-bell t)
 
 #+END_SRC
 
@@ -310,6 +321,130 @@ Disk space is cheap. Save lots.
 
 * Minor Modes
 
+** AG - The Silver Searcher
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package ag
+    :defines my-ag-keymap
+    :bind-keymap ("C-c C-a" . my-ag-map)
+    :config
+    (progn
+      (setq ag-reuse-buffers t)    ; Don't spam buffer list with ag buffers
+      (setq ag-highlight-search t) ; A little fanciness
+
+      ;; Use Projectile to find the project root
+      (setq ag-project-root-function
+	    (lambda (d)
+	      (let ((default-directory d))
+		(projectile-project-root))))
+
+      (defvar my-ag-map
+	(let ((map (make-sparse-keymap)))
+	  (define-key map (kbd "a") #'ag-regexp)
+	  (define-key map (kbd "p") #'ag-project-regexp)
+
+	  map))))
+
+#+END_SRC
+
+** Company - Auto Completion
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :diminish company-mode
+    :defer 2
+    :bind ("C-." . company-complete)
+    :config
+    (progn
+      (global-company-mode t)
+      (add-hook 'after-init-hook 'global-company-mode)
+
+      (setq company-begin-commands '(self-insert-command))
+      (setq company-idle-delay .3)
+      (setq company-tooltip-align-annotations 't)
+      (setq company-tooltip-limit 20)))
+
+#+END_SRC
+
+** Dash Integration
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package dash-at-point
+  :bind (("C-c d" . dash-at-point))
+)
+
+#+END_SRC
+
+** Dired+
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package dired+
+  :config
+  (progn
+    ;; Remove stupid font-locking
+    (setf (nth 3 diredp-font-lock-keywords-1)
+          ;; Properly handle the extensions
+          '("[^ .\\/]\\(\\.[^. /]+\\)$" 1 diredp-file-suffix))
+    (setf (nth 4 diredp-font-lock-keywords-1)
+          ;; Properly handle the extensions
+          '("\\([^ ]+\\) -> .+$" 1 diredp-symlink))
+    (setf (nth 6 diredp-font-lock-keywords-1)
+          (list (concat "^  \\(.*\\(" (concat (mapconcat 'regexp-quote
+                                                          (or (and (boundp 'dired-omit-extensions)
+                                                                   dired-omit-extensions)
+                                                              completion-ignored-extensions)
+                                                          "[*]?\\|")
+                                              "[*]?")        ; Allow for executable flag (*).
+                        "\\)\\)$") ; Do not treat compressed files as garbage... why the hell!
+                1 diredp-ignored-file-name t))
+    ))
+
+
+#+END_SRC
+
+** Dired Subtree
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package dired-subtree
+    :init
+    (bind-keys :map dired-mode-map
+               :prefix "C-,"
+               :prefix-map dired-subtree-map
+               :prefix-docstring "Dired subtree map."
+      ("<C-i-key>" . dired-subtree-insert)
+      ("C-/" . dired-subtree-apply-filter)
+      ("C-k" . dired-subtree-remove)
+      ("C-n" . dired-subtree-next-sibling)
+      ("C-p" . dired-subtree-previous-sibling)
+      ("C-u" . dired-subtree-up)
+      ("C-d" . dired-subtree-down)
+      ("C-a" . dired-subtree-beginning)
+      ("C-e" . dired-subtree-end)
+      ("C-c" . dired-subtree-cycle)
+      ("m" . dired-subtree-mark-subtree)
+      ("u" . dired-subtree-unmark-subtree)
+      ("C-o C-f" . dired-subtree-only-this-file)
+      ("C-o C-d" . dired-subtree-only-this-directory)))
+
+#+END_SRC
+
+** direx
+
+#+BEGIN_SRC emacs-lisp
+  (use-package direx
+    :bind (( "C-x C-j" . direx:jump-to-directory-other-window ))
+    :config
+    (push '(direx:direx-mode :position left :width 25 :dedicated t)
+	  popwin:special-display-config))
+
+
+#+END_SRC
+
 ** EVIL MODE - Love my VIM bindings
    :LOGBOOK:
    CLOCK: [2017-02-03 Fri 17:08]--[2017-02-03 Fri 17:29] =>  0:21
@@ -405,22 +540,61 @@ Disk space is cheap. Save lots.
 
 *** TODO Org-Evil
 
-
-
-
-
-
-
-** Winner mode - undo and redo window configuration
-
-winner-mode lets you use C-c <left> and C-c <right> to switch between
-window configurations. This is handy when something has popped up a
-buffer that you want to look at briefly before returning to whatever
-you were working on. When you’re done, press C-c <left>.
+** Flycheck - Syntax Checker
 
 #+BEGIN_SRC emacs-lisp
-(use-package winner
-  :defer t)
+
+    (use-package flycheck
+      :if (display-graphic-p)
+      :bind ("C-c f" . flycheck-mode)
+      :init (global-flycheck-mode)
+      :config
+      (progn
+	(defun jh/on-flycheck-status-change (status)
+	  (let ((fc-icon
+		 (cond
+		  ((eq status 'running) [#xF0F4])
+		  ((eq status 'errored) [#xF00C])
+		  ((eq status 'finished) [#xF00D]))))
+	    (diminish #'flycheck-mode (concat " " fc-icon))
+	    (force-mode-line-update)))
+
+	(add-hook 'flycheck-status-changed-functions #'jh/on-flycheck-status-change)
+
+	(flycheck-define-checker proselint
+				 "A linter for prose."
+				 :command ("proselint" source-inplace)
+				 :error-patterns
+				 ((warning line-start (file-name) ":" line ":" column ": "
+					   (id (one-or-more (not (any " "))))
+					   (message) line-end))
+				 :modes (text-mode markdown-mode gfm-mode org-mode adoc-mode))
+
+	(add-to-list 'flycheck-checkers 'proselint)))
+
+#+END_SRC
+
+*** proselint integration into Flycheck 
+
+`proselint` is a python tool for catching problems with written
+prose. It is configured as part of the block above, but requires the
+`proselint` python package installed.
+
+#+BEGIN_SRC shell
+
+pip install proselint
+
+#+END_SRC
+
+*** Flycheck Color Modeline
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package flycheck-color-mode-line
+    :config
+    (eval-after-load "flycheck"
+      '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)))
+
 #+END_SRC
 
 ** Helm - interactive completion
@@ -481,52 +655,13 @@ possible.
 
 #+END_SRC
 
-** Flycheck - Syntax Checker
+** popwin
 
 #+BEGIN_SRC emacs-lisp
 
-  (use-package flycheck
-    :if (display-graphic-p)
-    :bind ("C-c f" . flycheck-mode)
+  (use-package popwin
     :config
-    (progn
-      (defun jh/on-flycheck-status-change (status)
-	(let ((fc-icon
-	       (cond
-		((eq status 'running) [#xF0F4])
-		((eq status 'errored) [#xF00C])
-		((eq status 'finished) [#xF00D]))))
-	  (diminish #'flycheck-mode (concat " " fc-icon))
-	  (force-mode-line-update)))
-
-      (add-hook 'flycheck-status-changed-functions #'jh/on-flycheck-status-change)))
-
-#+END_SRC
-
-** AG - The Silver Searcher
-
-#+BEGIN_SRC emacs-lisp
-
-  (use-package ag
-    :defines my-ag-keymap
-    :bind-keymap ("C-c C-a" . my-ag-map)
-    :config
-    (progn
-      (setq ag-reuse-buffers t    ; Don't spam buffer list with ag buffers
-	    ag-highlight-search t ; A little fanciness
-
-	    ;; Use Projectile to find the project root
-	    ag-project-root-function
-	    (lambda (d)
-	      (let ((default-directory d))
-		(projectile-project-root))))
-
-      (defvar my-ag-map
-	(let ((map (make-sparse-keymap)))
-	  (define-key map (kbd "a") #'ag-regexp)
-	  (define-key map (kbd "p") #'ag-project-regexp)
-
-	  map))))
+    (popwin-mode 1))
 
 #+END_SRC
 
@@ -536,68 +671,13 @@ possible.
 
   (use-package projectile
     :init
-    (progn
-      (projectile-global-mode))
+      (projectile-global-mode)
     :config
-    (progn
       (define-key projectile-mode-map [remap projectile-ack] #'projectile-ag)
-      (setq projectile-completion-system 'grizzl))
+      (setq projectile-completion-system 'helm)
+      (helm-projectile-on)
+      (setq projectile-switch-project-action 'helm-projectile)
     :diminish projectile-mode)
-
-#+END_SRC
-
-** Dired+
-
-#+BEGIN_SRC emacs-lisp
-
-(use-package dired+
-  :config
-  (progn
-    ;; Remove stupid font-locking
-    (setf (nth 3 diredp-font-lock-keywords-1)
-          ;; Properly handle the extensions
-          '("[^ .\\/]\\(\\.[^. /]+\\)$" 1 diredp-file-suffix))
-    (setf (nth 4 diredp-font-lock-keywords-1)
-          ;; Properly handle the extensions
-          '("\\([^ ]+\\) -> .+$" 1 diredp-symlink))
-    (setf (nth 6 diredp-font-lock-keywords-1)
-          (list (concat "^  \\(.*\\(" (concat (mapconcat 'regexp-quote
-                                                          (or (and (boundp 'dired-omit-extensions)
-                                                                   dired-omit-extensions)
-                                                              completion-ignored-extensions)
-                                                          "[*]?\\|")
-                                              "[*]?")        ; Allow for executable flag (*).
-                        "\\)\\)$") ; Do not treat compressed files as garbage... why the hell!
-                1 diredp-ignored-file-name t))
-    ))
-
-
-#+END_SRC
-
-** Dired Subtree
-
-#+BEGIN_SRC emacs-lisp
-
-  (use-package dired-subtree
-    :init
-    (bind-keys :map dired-mode-map
-               :prefix "C-,"
-               :prefix-map dired-subtree-map
-               :prefix-docstring "Dired subtree map."
-      ("<C-i-key>" . dired-subtree-insert)
-      ("C-/" . dired-subtree-apply-filter)
-      ("C-k" . dired-subtree-remove)
-      ("C-n" . dired-subtree-next-sibling)
-      ("C-p" . dired-subtree-previous-sibling)
-      ("C-u" . dired-subtree-up)
-      ("C-d" . dired-subtree-down)
-      ("C-a" . dired-subtree-beginning)
-      ("C-e" . dired-subtree-end)
-      ("C-c" . dired-subtree-cycle)
-      ("m" . dired-subtree-mark-subtree)
-      ("u" . dired-subtree-unmark-subtree)
-      ("C-o C-f" . dired-subtree-only-this-file)
-      ("C-o C-d" . dired-subtree-only-this-directory)))
 
 #+END_SRC
 
@@ -683,36 +763,6 @@ possible.
 
 #+END_SRC
 
-** Dash Integration
-
-#+BEGIN_SRC emacs-lisp
-
-(use-package dash-at-point
-  :bind (("C-c d" . dash-at-point))
-)
-
-#+END_SRC
-
-** Company - Auto Completion
-
-#+BEGIN_SRC emacs-lisp
-  (use-package company
-    :ensure t
-    :diminish company-mode
-    :defer 2
-    :bind ("C-." . company-complete)
-    :config
-    (progn
-      (global-company-mode t)
-      (add-hook 'after-init-hook 'global-company-mode)
-
-      (setq company-begin-commands '(self-insert-command))
-      (setq company-idle-delay .3)
-      (setq company-tooltip-align-annotations 't)
-      (setq company-tooltip-limit 20)))
-
-#+END_SRC
-
 ** Magit - Git Magic
 
 #+BEGIN_SRC emacs-lisp
@@ -722,14 +772,45 @@ possible.
 
 #+END_SRC
 
+
+
+
+
+
+
+** Winner mode - undo and redo window configuration
+
+winner-mode lets you use C-c <left> and C-c <right> to switch between
+window configurations. This is handy when something has popped up a
+buffer that you want to look at briefly before returning to whatever
+you were working on. When you’re done, press C-c <left>.
+
+#+BEGIN_SRC emacs-lisp
+(use-package winner
+  :defer t)
+#+END_SRC
+
 * Major Modes
 
-
+** TODO Ruby
+** TODO Clojure
+** TODO Elixir
 ** TODO Python
 
    - Anaconda mode?
 
-** TODO Asciidoc
+** DONE Asciidoc
+   CLOSED: [2017-04-03 Mon 13:44]
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package adoc-mode
+    :mode "\\.asciidoc\\'"
+    :ensure t)
+
+#+END_SRC
+
+** TODO MobileOrg
 
 ** YAML
 
@@ -740,8 +821,6 @@ possible.
   :ensure t)
 
 #+END_SRC
-
-*** TODO MobileOrg
 
 ** JSON
 
@@ -857,83 +936,84 @@ possible.
 
 #+BEGIN_SRC emacs-lisp
 
-    (use-package org-agenda
-      :ensure org-plus-contrib
-      :defer t
-      :bind (("C-c a" . org-agenda))
-      :init
-      (progn
-	(setq org-directory (expand-file-name "org" my-personal-dir))
-	(setq org-default-notes-file (expand-file-name "todo.org"  org-directory))
-	(setq org-default-bookmarks-file (expand-file-name "bookmarks.org" org-directory))
-	(defvar org-default-journal-file (expand-file-name "journal.org" org-directory)
-	  "File to dump journal entries into"))
+  (use-package org-agenda
+    :ensure org-plus-contrib
+    :defer t
+    :bind (("C-c a" . org-agenda))
+    :init
+    (progn
+      (setq org-directory (expand-file-name "org" my-personal-dir))
+      (setq org-default-notes-file (expand-file-name "todo.org"  org-directory))
+      (setq org-default-bookmarks-file (expand-file-name "bookmarks.org" org-directory))
+      (defvar org-default-journal-file (expand-file-name "journal.org" org-directory)
+	"File to dump journal entries into"))
 
-      :config
-      (progn
-	(setq org-agenda-files (list org-directory))
-	(setq org-agenda-prefix-format
-	      '((agenda . " %i %-12:c%?-12t% s")
-		(timeline . "  % s")
-		(todo . " %i %-12:T")
-		(tags . " %i %-12:T")
-		(search . " %i %-12:T")))
+    :config
+    (progn
+      (setq org-agenda-files (list org-directory))
+      (setq org-agenda-prefix-format
+	    '((agenda . " %i %-12:c%?-12t% s")
+	      (timeline . "  % s")
+	      (todo . " %i %-12:T")
+	      (tags . " %i %-12:T")
+	      (search . " %i %-12:T")))
 
-	;; Sorting order for tasks on the agenda
-	(setq org-agenda-sorting-strategy
-	      (quote ((agenda habit-down time-up user-defined-up effort-up category-keep)
-		      (todo category-up effort-up)
-		      (tags category-up effort-up)
-		      (search category-up))))
+      ;; Sorting order for tasks on the agenda
+      (setq org-agenda-sorting-strategy
+	    (quote ((agenda habit-down time-up user-defined-up effort-up category-keep)
+		    (todo category-up effort-up)
+		    (tags category-up effort-up)
+		    (search category-up))))
 
-	(setq org-agenda-custom-commands
-	      '(("O" "Office block agenda"
-		 ((agenda "" ((org-agenda-span 3)
-			      (org-agenda-start-on-weekday nil)))
-		  ;; limits the agenda display to a single day
-		  (tags-todo "@work|moz|phone")
-		  (todo "TODO" ((org-agenda-files org-default-notes-file)))
-		  ;; limits the tag search to the file inbox.org
-		  (todo "BLOCKED")))
-		("b" "Projects"
-		 ((todo "PROJECT")))
-		("W" "Weekly Review"
-		 ((agenda "" ((org-agenda-ndays 7))) ;; review upcoming deadlines and appointments
-		  ;; type "l" in the agenda to review logged items
-		  (stuck "") ;; review stuck projects as designated by org-stuck-projects
-		  (todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
-		  (todo "MAYBE") ;; review someday/maybe items
-		  (todo "WAITING")))
-		("d" "Upcoming deadlines" agenda ""
-		 ((org-agenda-time-grid nil)
-		  (org-deadline-warning-days 365)
-		  (org-agenda-entry-types '(:deadline))))
-		("c" "Calendar" agenda ""
-		 ((org-agenda-ndays 7)
-		  (org-agenda-start-on-weekday 0)
-		  (org-agenda-time-grid nil)
-		  (org-agenda-repeating-timestamp-show-all t)
-		  (org-agenda-entry-types '(:timestamp :sexp))))))
+      (setq org-agenda-custom-commands
+	    '(("O" "Office block agenda"
+	       ((agenda "" ((org-agenda-span 3)
+			    (org-agenda-start-on-weekday nil)))
+		;; limits the agenda display to a single day
+		(tags-todo "moz/!-MEETING-PHONE}" ())
+		(todo "TODO" ((org-agenda-files org-default-notes-file)))
+		;; limits the tag search to the file inbox.org
+		(todo "BLOCKED")))
+	      ("b" "Projects"
+	       ((todo "PROJECT")))
+	      ("W" "Weekly Review"
+	       ((agenda "" ((org-agenda-ndays 7))) ;; review upcoming deadlines and appointments
+		;; type "l" in the agenda to review logged items
+		(stuck "") ;; review stuck projects as designated by org-stuck-projects
+		(todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
+		(todo "SOMEDAY") ;; review someday/maybe items
+		(todo "BLOCKED")))
+	      ("d" "Upcoming deadlines" agenda ""
+	       ((org-agenda-time-grid nil)
+		(org-deadline-warning-days 365)
+		(org-agenda-entry-types '(:deadline))))
+	      ("c" "Calendar" agenda ""
+	       ((org-agenda-ndays 7)
+		(org-agenda-start-on-weekday 0)
+		(org-agenda-time-grid nil)
+		(org-agenda-repeating-timestamp-show-all t)
+		(org-agenda-entry-types '(:timestamp :sexp))))))
 
-	(setq org-agenda-dim-blocked-tasks t)
-	(setq org-agenda-show-all-dates t)
-	(setq org-agenda-span 'week)
-	(setq org-agenda-compact-blocks t)
-	(setq org-agenda-repeating-timestamp-show-all t)
-	(setq org-agenda-show-all-dates t)
-	(setq org-agenda-skip-deadline-if-done t)
-	(setq org-agenda-skip-scheduled-if-done t)
-	(setq org-agenda-start-on-weekday 1)
-	(setq org-agenda-start-with-log-mode t)
-	(setq org-agenda-tags-column -100)
-	(setq org-agenda-time-grid (quote ((daily today remove-match)
-					   #("----------------" 0 16 (org-heading t))
-					   (0900 1100 1300 1500 1700 1900))))
-	(setq org-agenda-todo-ignore-deadlines nil)
-	(setq org-agenda-todo-ignore-scheduled t)
-	(setq org-agenda-todo-ignore-timestamp t)
-	(setq org-agenda-todo-ignore-with-date nil))
-  )
+      (setq org-agenda-dim-blocked-tasks t)
+      (setq org-agenda-show-all-dates t)
+      (setq org-agenda-span 'week)
+      (setq org-agenda-compact-blocks nil)
+      (setq org-agenda-repeating-timestamp-show-all t)
+      (setq org-agenda-show-all-dates t)
+      (setq org-agenda-skip-deadline-if-done t)
+      (setq org-agenda-skip-scheduled-if-done t)
+      (setq org-agenda-start-on-weekday 1)
+      (setq org-agenda-start-with-log-mode t)
+      (setq org-agenda-tags-column -100)
+      (setq org-agenda-time-grid (quote ((daily today remove-match)
+					 #("----------------" 0 16 (org-heading t))
+					 (0900 1100 1300 1500 1700 1900))))
+      (setq org-agenda-todo-ignore-deadlines nil)
+      (setq org-agenda-todo-ignore-scheduled t)
+      (setq org-agenda-todo-ignore-timestamp t)
+      (setq org-agenda-todo-ignore-with-date nil)
+      ))
+    
 
 #+END_SRC
 
@@ -966,7 +1046,7 @@ possible.
 			     ("@shop" . ?s)
                              ("@errands" . ?e)
                              (:endgroup . nil)
-                             ("computer" . ?c) ("kalyn" . ?k) ("phone" . ?p)))
+                             ("computer" . ?c) ("kalyn" . ?k) ("phone" . ?p) ("moz" . ?m)))
 
 #+END_SRC
 
@@ -1014,29 +1094,25 @@ possible.
 
 **** TODO Effort Estimates                                   :@work:computer:
 
-#+BEGIN_SRC emacs-lisp
-
-(add-to-list 'org-global-properties
-      '("Effort_ALL". "0:05 0:15 0:30 1:00 2:00 3:00 4:00"))
-
-#+END_SRC
-
 From http://orgmode.org/worg/org-hacks.html
 
 #+BEGIN_SRC emacs-lisp
 
-(add-hook 'org-clock-in-prepare-hook
-          'my/org-mode-ask-effort)
+  (add-to-list 'org-global-properties
+	'("Effort_ALL" . "0:05 0:15 0:30 1:00 2:00 3:00 4:00"))
 
-(defun my/org-mode-ask-effort ()
-  "Ask for an effort estimate when clocking in."
-  (unless (org-entry-get (point) "Effort")
-    (let ((effort
-           (completing-read
-            "Effort: "
-            (org-entry-get-multivalued-property (point) "Effort_ALL"))))
-      (unless (equal effort "")
-        (org-set-property "Effort" effort)))))
+  (add-hook 'org-clock-in-prepare-hook
+            'my/org-mode-ask-effort)
+
+  (defun my/org-mode-ask-effort ()
+    "Ask for an effort estimate when clocking in."
+    (unless (org-entry-get (point) "Effort")
+      (let ((effort
+             (completing-read
+              "Effort: "
+              (org-entry-get-multivalued-property (point) "Effort_ALL"))))
+	(unless (equal effort "")
+          (org-set-property "Effort" effort)))))
 
 #+END_SRC
 
@@ -1085,7 +1161,17 @@ From http://orgmode.org/worg/org-hacks.html
 
 *** TODO Archiving
 
-*** TODO Exporting
+*** STARTED Exporting
+
+**** reveal.js
+
+reveal.js is a HTML/Javascript slide format.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ox-reveal
+    :config
+    (setq org-reveal-root  (expand-file-name "~/.tools/reveal.js/")))
+#+END_SRC
 
 *** TODO Publishing
 

@@ -37,3 +37,37 @@ report._reviewed.filter=( reviewed.none: or reviewed.before:now-1week ) and ( +P
 uda.totalactivetime.type=duration
 uda.totalactivetime.label=Total active time
 uda.totalactivetime.values=
+context.home=+shop or +home or project:Home
+context.work=+moz or project:moz or +freelance or +work
+
+# Bugwarrior UDAs
+uda.jiraurl.type=string
+uda.jiraurl.label=Jira URL
+uda.githubcreatedon.type=date
+uda.githubcreatedon.label=Github Created
+uda.githubtitle.type=string
+uda.githubtitle.label=Github Title
+uda.githubnumber.type=numeric
+uda.githubnumber.label=Github Issue/PR #
+uda.githubbody.type=string
+uda.githubbody.label=Github Body
+uda.githubtype.type=string
+uda.githubtype.label=Github Type
+uda.jiraid.type=string
+uda.jiraid.label=Jira Issue ID
+uda.jiradescription.type=string
+uda.jiradescription.label=Jira Description
+uda.githuburl.type=string
+uda.githuburl.label=Github URL
+uda.jiraestimate.type=numeric
+uda.jiraestimate.label=Estimate
+uda.githubupdatedat.type=date
+uda.githubupdatedat.label=Github Updated
+uda.jirasummary.type=string
+uda.jirasummary.label=Jira Summary
+uda.githubrepo.type=string
+uda.githubrepo.label=Github Repo Slug
+uda.githubmilestone.type=numeric
+uda.githubmilestone.label=Github Milestone
+# END Bugwarrior UDAs
+context=work

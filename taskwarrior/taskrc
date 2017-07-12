@@ -38,7 +38,13 @@ uda.totalactivetime.type=duration
 uda.totalactivetime.label=Total active time
 uda.totalactivetime.values=
 context.home=+shop or +home or project:Home
-context.work=+moz or project:moz or +freelance or +work
+context.work=+moz or (project:moz or +freelance or +work) and -EPIC
+
+alias.someday=mod +someday wait:someday
+
+
+
+
 
 # Bugwarrior UDAs
 uda.jiraurl.type=string
@@ -70,4 +76,16 @@ uda.githubrepo.label=Github Repo Slug
 uda.githubmilestone.type=numeric
 uda.githubmilestone.label=Github Milestone
 # END Bugwarrior UDAs
-context=work
+taskd.server=freecinc.com:53589
+taskd.key=\/Users\/jeffhulten\/.task\/freecinc_3e25d7fc.key.pem
+taskd.ca=\/Users\/jeffhulten\/.task\/freecinc_3e25d7fc.ca.pem
+taskd.credentials=FreeCinc\/freecinc_3e25d7fc\/0123dc0e-2a78-48e6-aa5d-71cebd2c768e
+taskd.certificate=\/Users\/jeffhulten\/.task\/freecinc_3e25d7fc.cert.pem
+xterm.title=yes
+report.active_task.description=Get the active or highest urgency task in the current context
+report.active_task.columns=id
+report.active_task.sort=urgency-
+report.active_task.filter=limit:1 status:pending
+report.active_task.labels=
+context.vids=proj:video or +shop or +opensource
+context=vids

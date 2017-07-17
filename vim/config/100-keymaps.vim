@@ -3,7 +3,6 @@ vmap <s-tab> <gv
 
 map <leader>t :CtrlP<CR>
 map <leader>b :CtrlPBuffer<CR>
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 map <leader>j :TagbarToggle<CR>
 
 " Hold command to do the g for softwrap

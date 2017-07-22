@@ -17,7 +17,7 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
+
 
 " Don't use Ex mode, use Q for formatting
 map Q gq

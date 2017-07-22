@@ -114,6 +114,9 @@ augroup END
 
 " Plug 'kien/rainbow_parentheses.vim'
 
+" Dash, for lookups
+Plug 'rizzatti/dash.vim'
+
 " Syntastic settings
 Plug 'vim-syntastic/syntastic'
 let g:syntastic_auto_loc_list=1

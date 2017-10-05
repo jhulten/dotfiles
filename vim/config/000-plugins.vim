@@ -23,6 +23,13 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
+" Plug 'tpope/vim-markdown'
+" Plug 'tpope/vim-haml'
+" Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-leiningen'
+" Plug 'tpope/vim-fireplace'
+" Plug 'tpope/vim-sexp-mappings-for-regular-people'
+
 
 " VCS: Git
 Plug 'tpope/vim-fugitive'
@@ -38,13 +45,6 @@ nmap <silent> <leader>gP :Git push<cr>
 nmap <silent> <leader>gp :Git pull<cr>
 nmap <silent> <leader>gv :Gitv<cr>
 nmap <silent> <leader>gV :Gitv --all<cr>
-
-" Plug 'tpope/vim-markdown'
-" Plug 'tpope/vim-haml'
-" Plug 'tpope/vim-rails'
-" Plug 'tpope/vim-leiningen'
-" Plug 'tpope/vim-fireplace'
-" Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Color Schemes
 Plug 'lifepillar/vim-solarized8'
@@ -97,7 +97,7 @@ endif
 
 " Snippets and Autocomplete
 " Load on nothing
-Plug 'SirVer/ultisnips', { 'on': [] }
+"      Plug 'SirVer/ultisnips', { 'on': [] }
 Plug 'Valloric/YouCompleteMe', { 'on': [] }
 
 function! BuildYCM(info)
@@ -108,7 +108,7 @@ endfunction
 
 augroup load_us_ycm
   autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+  autocmd InsertEnter * call plug#load('YouCompleteMe')
                      \| autocmd! load_us_ycm
 augroup END
 

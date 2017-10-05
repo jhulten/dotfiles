@@ -38,7 +38,7 @@ uda.totalactivetime.type=duration
 uda.totalactivetime.label=Total active time
 uda.totalactivetime.values=
 context.home=+shop or +home or project:Home
-context.work=+moz or (project:moz or +freelance or +work) and -EPIC
+context.work=+moz or (project:seomoz or +freelance or +work) and -EPIC
 
 alias.someday=mod +someday wait:someday
 
@@ -87,5 +87,5 @@ report.active_task.columns=id
 report.active_task.sort=urgency-
 report.active_task.filter=limit:1 status:pending
 report.active_task.labels=
-context.vids=proj:video or +shop or +opensource
-context=vids
+context.vids=proj:jhulten.polymathic_man or +shop or +opensource or proj:vids
+context=work

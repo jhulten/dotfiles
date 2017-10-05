@@ -1,6 +1,6 @@
 # EDITOR
 
 export ALTERNATE_EDITOR="vim"
-export EDITOR=$(type -P vim || type -P vi)
+export EDITOR=$(which vim || which vi)
 
 export VISUAL=$EDITOR

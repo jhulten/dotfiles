@@ -146,6 +146,17 @@ let g:go_fmt_command = "goimports"
 " Lang: Elixir
 Plug 'elixir-lang/vim-elixir'
 
+" Lang: Coffeescript
+Plug 'kchmck/vim-coffee-script'
+Plug 'lukaszkorecki/CoffeeTags'
+let g:CoffeeAutoTagDisabled=0     " Disables autotaging on save (Default: 0 [false])
+"let g:CoffeeAutoTagFile=<filename>       " Name of the generated tag file (Default: ./tags)
+let g:CoffeeAutoTagIncludeVars=0  " Includes variables (Default: 0 [false])
+let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from the tag file location to the tag file location (Default: 1 [true])
+
+" Lang: Node.js
+Plug 'moll/vim-node'
+
 " Plug 'FuzzyFinder'
 " Plug 'taglist.vim'
 " Plug 'Gist.vim'

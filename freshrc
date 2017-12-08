@@ -69,11 +69,11 @@ fresh emacs/secrets.el.asc --file=~/.emacs.d/secrets.el --filter="keybase pgp de
 fresh hakimel/reveal.js . --file=~/.tools/reveal.js/
 
 # WORK SPECIFIC
-if [[ "$(hostname -s)" == "jeffrey-mbp" ]]; then
-  fresh systems/moz/shell.sh
-  fresh systems/moz/gitconfig.local --file=~/.gitconfig.local
-  fresh systems/moz/knife.rb --file=~/.chef/knife.rb
-fi
+#if [[ "$(hostname -s)" == "jeffrey-mbp" ]]; then
+#  fresh systems/moz/shell.sh
+#  fresh systems/moz/gitconfig.local --file=~/.gitconfig.local
+#  fresh systems/moz/knife.rb --file=~/.chef/knife.rb
+#fi
 
 init_vim() {
   if which vim &> /dev/null && ! [ -e $HOME/.vim/autoload/plug.vim ]; then

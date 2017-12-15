@@ -50,6 +50,8 @@ nmap <silent> <leader>gV :Gitv --all<cr>
 Plug 'lifepillar/vim-solarized8'
 Plug 'altercation/vim-colors-solarized'
 
+Plug 'b4b4r07/vim-hcl'
+
 " Airline, for status and more
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

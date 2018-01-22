@@ -45,7 +45,7 @@ fresh-options
 
 # BINARIES
 fresh-options --bin
-  fresh 'bin/*'
+  # fresh bin/\*
   fresh twe4ked/catacomb bin/catacomb
   fresh twe4ked/twitter-whois bin/twitter-whois
   fresh defunkt/repl bin/repl

@@ -1,7 +1,6 @@
 [user]
   email = jhulten@gmail.com
   name = Jeffrey Hulten
-  signingkey = 9CA2E0C217A1468B4D66F87C911510C7E5C5C41A
 
 [include]
   path = .gitconfig.local
@@ -54,9 +53,6 @@
 [merge]
   conflictstyle = diff3
   ff = only
-
-[commit]
-  gpgSign = true
 
 [color]
   diff = auto

@@ -8,12 +8,20 @@
 #
 # See http://freshshell.com/readme for documentation.
 
+if [[ "$(hostname -s)" == "SEALM601575" ]]; then
+  export MACHINE_TYPE="getty"
+else
+  export MACHINE_TYPE="personal"
+fi
+
 fresh freshshell/fresh bin/fresh --bin
 fresh freshshell/fresh-open bin/fresh-open --bin
 
 # Common Shell (~/.fresh/build/shell.sh)
 fresh shell/aliases/\*
+[ -d ~/.dotfiles/systems/$MACHINE_TYPE/shell/aliases ] && fresh systems/$MACHINE_TYPE/shell/aliases/\*
 fresh shell/common/\*
+[ -d ~/.dotfiles/systems/$MACHINE_TYPE/shell/common ] && fresh systems/$MACHINE_TYPE/shell/common/\*
 fresh shell/secrets.sh.asc --filter="keybase pgp decrypt"
 
 fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
@@ -21,6 +29,7 @@ fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
 # CONFIG FILES
 fresh-options --file
   fresh config/\*
+  [ -d ~/.dotfiles/systems/$MACHINE_TYPE/config ] && fresh systems/$MACHINE_TYPE/config/\*
   fresh jasoncodes/dotfiles config/gemrc
   fresh jasoncodes/dotfiles config/inputrc
 fresh-options
@@ -67,13 +76,6 @@ fresh emacs/secrets.el.asc --file=~/.emacs.d/secrets.el --filter="keybase pgp de
 
 # Tools
 fresh hakimel/reveal.js . --file=~/.tools/reveal.js/
-
-# WORK SPECIFIC
-#if [[ "$(hostname -s)" == "jeffrey-mbp" ]]; then
-#  fresh systems/moz/shell.sh
-#  fresh systems/moz/gitconfig.local --file=~/.gitconfig.local
-#  fresh systems/moz/knife.rb --file=~/.chef/knife.rb
-#fi
 
 init_vim() {
   if which vim &> /dev/null && ! [ -e $HOME/.vim/autoload/plug.vim ]; then

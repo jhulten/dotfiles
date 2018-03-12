@@ -12,5 +12,10 @@ DATE_TODAY=$(date +"%Y-%m-%d %H:%M:%S")
 # OPTIONAL - Label
 LABEL='code commit'
 
-RESCUE_TIME="key=$API_KEY&highlight_date=$DATE_TODAY&description=$MESSAGE&source=$LABEL"
-curl --data $RESCUE_TIME https://www.rescuetime.com/anapi/highlights_post
+REPO=${$(git remote show -n origin | grep "Push  URL" | cut -d: -f3)%.git}
+
+curl --data-urlencode "key=$API_KEY" \
+     --data-urlencode "highlight_date=$DATE_TODAY" \
+     --data-urlencode "description=$REPO | $MESSAGE" \
+     --data-urlencode "source=$LABEL" \
+     https://www.rescuetime.com/anapi/highlights_post

@@ -9,7 +9,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="gallois"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -47,18 +47,21 @@ DISABLE_AUTO_UPDATE="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=~/.omz-custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws chruby docker git git-extras git-flow-avh github knife last-working-dir osx pyenv tmux sudo vi-mode)
+plugins=(aws chruby docker shrink-path terraform)
+plugins+=(git git-extras git-flow-avh github)
+plugins+=(knife last-working-dir osx pyenv tmux sudo vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
+setopt prompt_subst
+#PROMPT='%{$fg[cyan]%}[$(shrink_path -l)]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

@@ -22,7 +22,7 @@ fresh shell/aliases/\*
 [ -d ~/.dotfiles/systems/$MACHINE_TYPE/shell/aliases ] && fresh systems/$MACHINE_TYPE/shell/aliases/\*
 fresh shell/common/\*
 [ -d ~/.dotfiles/systems/$MACHINE_TYPE/shell/common ] && fresh systems/$MACHINE_TYPE/shell/common/\*
-fresh shell/secrets.sh.asc --filter="keybase pgp decrypt"
+fresh shell/secrets.sh.asc --filter="gpg -du jhulten@gmail.com"
 
 fresh bhilburn/powerlevel9k . --file=~/.omz-custom/themes/powerlevel9k/
 fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
@@ -36,6 +36,8 @@ fresh-options --file
 fresh-options
 
 fresh config/git-templates --file=~/.git-templates/
+fresh config/taskwarrior --file=~/.taskwarrior/
+
 
 # BASHRC
 fresh-options --file=~/.bashrc --marker
@@ -48,6 +50,8 @@ fresh-options
 # ZSH
 fresh-options --file=~/.zshrc --marker
   fresh shell/zsh/\*
+  #fresh https://gist.github.com/querentCode/25f3ece8582103360cb835e9cab13a96 pltask.zsh
+
   fresh freshshell/fresh contrib/source-build.sh
   fresh freshshell/fresh contrib/completion/fresh-completion.zsh
   fresh gnachman/iterm2-website source/shell_integration/zsh
@@ -63,6 +67,7 @@ fresh-options --bin
   fresh pengwynn/dotfiles bin/tmux-github-status
   fresh pengwynn/dotfiles bin/git-wtf
   fresh rafi/mux mux
+  fresh 8ware/task-dashboard task-dashboard
 fresh-options
 
 # VIM
@@ -73,7 +78,7 @@ fresh-options
 # EMACS
 fresh emacs/init.el --file=~/.emacs.d/init.el
 fresh emacs/config.org --file=~/.emacs.d/config.org
-fresh emacs/secrets.el.asc --file=~/.emacs.d/secrets.el --filter="keybase pgp decrypt"
+fresh emacs/secrets.el.asc --file=~/.emacs.d/secrets.el --filter="gpg -du jhulten@gmail.com"
 
 # Tools
 fresh hakimel/reveal.js . --file=~/.tools/reveal.js/
@@ -94,4 +99,8 @@ fresh_after_build() {
   if command -v brew >/dev/null 2>&1; then
     init_brew
   fi
+
+  cp ~/.taskrc{,.$(date +%Y%m%d-%H%M%S)}
+  cp ~/.taskwarrior/taskrc ~/.taskrc
+  chmod 600 ~/.taskrc
 }

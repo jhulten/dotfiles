@@ -1,0 +1,11 @@
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-1week ) and ( +PENDING or +WAITING )
+
+report.active_task.description=Get the active or highest urgency task in the current context
+report.active_task.columns=id
+report.active_task.sort=urgency-
+report.active_task.filter=limit:1 status:pending
+report.active_task.labels=
+

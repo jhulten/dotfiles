@@ -1,0 +1,5 @@
+context.home=+shop or +home or project:Home or project:Shop
+context.work=(+getty or project:Getty or +freelance or +work) and -EPIC
+context.vids=proj:PM.video or +shop or +opensource
+context.pman=proj:PM
+context.shop=+shop or proj:Shop

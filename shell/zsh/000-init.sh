@@ -57,6 +57,9 @@ plugins=(aws chruby docker shrink-path terraform)
 plugins+=(git git-extras git-flow-avh github)
 plugins+=(knife last-working-dir osx pyenv tmux sudo vi-mode)
 
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOQUIT=false
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -88,3 +91,32 @@ setopt prompt_subst
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+DEFAULT_USER=jhulten
+
+POWERLEVEL9K_MODE='nerdfont-complete'
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context todo dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv virtualenv battery time)
+
+POWERLEVEL9K_STATUS_VERBOSE=false
+
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+
+POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="white"
+
+POWERLEVEL9K_TIME_BACKGROUND="black"
+POWERLEVEL9K_TIME_FOREGROUND="249"
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M} \uf64f"
+
+POWERLEVEL9K_BATTERY_BACKGROUND="black"
+POWERLEVEL9K_BATTERY_FOREGROUND="249"
+
+POWERLEVEL9K_COLOR_SCHEME='light'
+
+POWERLEVEL9K_VCS_GIT_ICON='\ue709'
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\ue709'
+
+POWERLEVEL9K_HIDE_BRANCH_ICON=false
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true

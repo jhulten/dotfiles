@@ -41,9 +41,8 @@ include ~/.taskwarrior/reports
 
 ## Contexts
 include ~/.taskwarrior/contexts
+include ~/.taskwarrior/aliases
 
-alias.someday=mod +someday wait:someday
 xterm.title=yes
-
 
 

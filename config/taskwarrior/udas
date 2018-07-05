@@ -1,4 +1,7 @@
 
+uda.priority.values=H,M,,L
+urgency.uda.priority.L.coefficient=-1.0
+
 uda.reviewed.type=date
 uda.reviewed.label=Reviewed
 uda.totalactivetime.type=duration

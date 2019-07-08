@@ -104,5 +104,5 @@ fresh_after_build() {
   cp ~/.taskrc{,.$(date +%Y%m%d-%H%M%S)}
   cp ~/.taskwarrior/taskrc ~/.taskrc
   chmod 600 ~/.taskrc
-
+  chmod 755 ~/.git-templates/hooks/*
 }

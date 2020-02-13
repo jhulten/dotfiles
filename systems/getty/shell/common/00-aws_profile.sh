@@ -1,8 +1,6 @@
 export AWS_PROFILE=shared
 
 okta_creds () {
-    initial_profile=${AWS_PROFILE:=shared}
-    export AWS_PROFILE=shared
     if [ -z $1 ]
     then
         initial_profile=${AWS_PROFILE:=shared}

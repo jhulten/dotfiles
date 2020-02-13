@@ -57,9 +57,9 @@ ZSH_CUSTOM=~/.omz-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws chruby docker shrink-path terraform)
+plugins=(aws docker shrink-path terraform)
 plugins+=(git git-extras git-flow-avh github)
-plugins+=(knife last-working-dir osx pyenv tmux sudo vi-mode)
+plugins+=(last-working-dir osx tmux sudo vi-mode dash iterm2)
 
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOQUIT=false
@@ -97,11 +97,12 @@ setopt prompt_subst
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 DEFAULT_USER=jhulten
+AWS_DEFAULT_PROFILE=shared
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context todo dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv virtualenv battery time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context aws todo dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery anaconda time)
 
 POWERLEVEL9K_STATUS_VERBOSE=false
 
@@ -125,3 +126,5 @@ POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\ue709'
 
 POWERLEVEL9K_HIDE_BRANCH_ICON=false
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
+P9K_CONTEXT_ALWAYS_SHOW=true

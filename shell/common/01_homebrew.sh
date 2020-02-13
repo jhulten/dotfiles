@@ -26,7 +26,7 @@ if [[ -x "/usr/local/bin/brew" || -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; t
       else
         echo "completions not configured for $SHELL"
       fi
-
+      export PATH="$(brew --prefix)/sbin:$PATH"
     fi
   elif [[ "$platform" == "linux" ]]; then
     brewhome=/home/linuxbrew

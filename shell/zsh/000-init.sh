@@ -61,7 +61,7 @@ plugins=(aws docker shrink-path terraform)
 plugins+=(git git-extras git-flow-avh github)
 plugins+=(last-working-dir osx tmux sudo vi-mode dash iterm2)
 
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 ZSH_TMUX_AUTOQUIT=false
 
 source $ZSH/oh-my-zsh.sh
@@ -102,7 +102,7 @@ AWS_DEFAULT_PROFILE=shared
 POWERLEVEL9K_MODE='nerdfont-complete'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context aws todo dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery anaconda time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery anaconda custom_terraform time)
 
 POWERLEVEL9K_STATUS_VERBOSE=false
 

@@ -8,8 +8,12 @@
 #
 # See http://freshshell.com/readme for documentation.
 
+# TODO Split identification of machine type (work vs personal)
+#  identification of wsl should be separate (see WSL_DISTRO_NAME)
 if [[ "$(hostname -s)" == "SEALM601575" ]]; then
   export MACHINE_TYPE="getty"
+elif [[ "$(hostname -s)" == "CORSAIRONE" ]]; then
+  export MACHINE_TYPE="personal-wsl"
 else
   export MACHINE_TYPE="personal"
 fi

@@ -26,6 +26,8 @@ fresh shell/aliases/\*
 [ -d ~/.dotfiles/systems/$MACHINE_TYPE/shell/aliases ] && fresh systems/$MACHINE_TYPE/shell/aliases/\*
 fresh shell/common/\*
 [ -d ~/.dotfiles/systems/$MACHINE_TYPE/shell/common ] && fresh systems/$MACHINE_TYPE/shell/common/\*
+# TODO Build decrypt/encrypt scripts for secrets
+# TODO Alter filter to check signature
 fresh shell/secrets.sh.asc --filter="gpg -du jhulten@gmail.com"
 
 fresh bhilburn/powerlevel9k . --file=~/.omz-custom/themes/powerlevel9k/
@@ -65,6 +67,8 @@ fresh-options
 
 # BINARIES
 fresh-options --bin
+  # TODO evaluate imported binaries
+
   # fresh bin/\*
   fresh twe4ked/catacomb bin/catacomb
   fresh twe4ked/twitter-whois bin/twitter-whois

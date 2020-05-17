@@ -3,6 +3,7 @@
 # Copy last commit hash to clipboard on commit
 git log -1 --format=format:%h | pbcopy
 
+# TODO Migrate this to secret storage
 API_KEY=B63M9UNHo02jp01JARVuAaTGbpkIZaxq3R4SaF2s
 
 # REQUIRED FIELDS - Today's date and commit message

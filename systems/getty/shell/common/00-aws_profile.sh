@@ -48,3 +48,7 @@ _okta_aws_login() { # PROFILE FLAGS
     role=$(echo $1 | sed 's/getty-//')
     oktad $2 -w -p $1 -o ${role} && echo "✅\t${role}"
 }
+
+decodeauth () {
+    /usr/local/bin/aws sts decode-authorization-message --encoded-message "$1" | jq ".DecodedMessage | fromjson"
+}

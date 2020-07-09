@@ -45,7 +45,7 @@ _okta_aws_profile() {
 }
 
 _okta_aws_login() { # PROFILE FLAGS
-    role=$(echo $1 | sed 's/getty-//')
+    role=${1//getty-//}
     oktad $2 -w -p $1 -o ${role} && echo "✅\t${role}"
 }
 

@@ -7,13 +7,13 @@
 export ZSH=$HOME/.oh-my-zsh
 
 TRAPWINCH() {
-  zle && { zle reset-prompt; zle -R }
+  zle && { zle reset-prompt; zle -R; }
 }
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -99,32 +99,4 @@ setopt prompt_subst
 DEFAULT_USER=jhulten
 AWS_DEFAULT_PROFILE=shared
 
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context aws todo dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery anaconda custom_terraform time)
-
-POWERLEVEL9K_STATUS_VERBOSE=false
-
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="white"
-
-POWERLEVEL9K_TIME_BACKGROUND="black"
-POWERLEVEL9K_TIME_FOREGROUND="249"
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M} \uf64f"
-
-POWERLEVEL9K_BATTERY_BACKGROUND="black"
-POWERLEVEL9K_BATTERY_FOREGROUND="249"
-POWERLEVEL9K_BATTERY_STAGES="▁▂▃▄▅▆▇█"
-
-POWERLEVEL9K_COLOR_SCHEME='light'
-
-POWERLEVEL9K_VCS_GIT_ICON='\ue709'
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\ue709'
-
-POWERLEVEL9K_HIDE_BRANCH_ICON=false
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-
-P9K_CONTEXT_ALWAYS_SHOW=true
+source ~/.p10k.zsh

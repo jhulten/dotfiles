@@ -12,6 +12,7 @@
   cisp = commit --verbose --signoff -p
   co = checkout
   st = status
+  ap = add --patch
   whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
   whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
   tree = log --oneline --decorate --graph
@@ -24,6 +25,7 @@
   glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   filelog = log -u
   fl = log -u
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   dlc = diff --cached HEAD^
   dr  = "!f() { git diff "$1"^.."$1"; }; f"
   lc  = "!f() { git ll "$1"^.."$1"; }; f"

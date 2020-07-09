@@ -24,7 +24,7 @@ fresh shell/common/\*
 [ -d ~/.dotfiles/systems/$MACHINE_TYPE/shell/common ] && fresh systems/$MACHINE_TYPE/shell/common/\*
 fresh shell/secrets.sh.asc --filter="gpg -du jhulten@gmail.com"
 
-fresh bhilburn/powerlevel9k . --file=~/.omz-custom/themes/powerlevel9k/
+fresh romkatv/powerlevel10k . --file=~/.omz-custom/themes/powerlevel10k/
 fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
 
 # CONFIG FILES

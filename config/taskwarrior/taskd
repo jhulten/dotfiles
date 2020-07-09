@@ -1,7 +1,7 @@
 
-taskd.certificate=~/.task/certs/private.certificate.pem
-taskd.key=~/.task/certs/private.key.pem
-taskd.ca=~/.task/certs/ca.cert.pem
-taskd.server=taskwarrior.inthe.am:53589
-taskd.credentials=inthe_am/jhulten/5f8ebeb2-7c95-41c0-a723-22d1a57622e8
-taskd.trust=ignore hostname
+# taskd.certificate=~/.task/certs/private.certificate.pem
+# taskd.key=~/.task/certs/private.key.pem
+# taskd.ca=~/.task/certs/ca.cert.pem
+# taskd.server=taskwarrior.inthe.am:53589
+# taskd.credentials=inthe_am/jhulten/5f8ebeb2-7c95-41c0-a723-22d1a57622e8
+# taskd.trust=ignore hostname

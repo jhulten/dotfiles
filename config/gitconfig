@@ -83,6 +83,7 @@
   prompt = false
 
 [difftool "icdiff"]
+  # TODO evaluate gitconfig difftool for different platforms
   cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
 
 [filter "media"]

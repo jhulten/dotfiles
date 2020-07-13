@@ -6,7 +6,7 @@ else
     brew install direnv
   elif which apt-get >/dev/null 2>&1; then
     echo "installing via apt-get"
-    apt-get update && apt-get install -y direnv
+    sudo apt-get update && sudo apt-get install -y direnv
   fi
 fi
 

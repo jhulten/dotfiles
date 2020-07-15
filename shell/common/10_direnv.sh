@@ -1,16 +1,10 @@
-if which direnv >/dev/null 2>&1; then
-else
-  echo "missing direnv"
-  if [[ $HAS_BREW == 1 ]]; then
-    echo "installing via homebrew"
-    brew install direnv
-  elif which apt-get >/dev/null 2>&1; then
-    echo "installing via apt-get"
-    sudo apt-get update && sudo apt-get install -y direnv
-  fi
-fi
+# if has direnv; then
+# else
+#   echo "missing direnv"
+#   pkg_install direnv
+# fi
 
-if which direnv >/dev/null 2>&1; then
-  echo "enabling direnv"
-  eval "$(direnv hook `basename $SHELL`)"
-fi
+# if has direnv; then
+#   echo "enabling direnv"
+#   eval "$(direnv hook `basename $SHELL`)"
+# fi

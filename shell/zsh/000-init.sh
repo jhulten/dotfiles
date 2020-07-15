@@ -57,7 +57,7 @@ ZSH_CUSTOM=~/.omz-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws docker shrink-path terraform)
+plugins=(aws docker shrink-path terraform asdf)
 plugins+=(git git-extras git-flow-avh github)
 plugins+=(last-working-dir osx tmux sudo vi-mode dash iterm2)
 

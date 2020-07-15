@@ -1,17 +1,6 @@
 # shellcheck shell=bash
 # Homebrew
 
-platform='unknown'
-unamestr=$(uname)
-if [[ "$unamestr" == 'Linux' ]]; then
-  platform='linux'
-elif [[ "$unamestr" == 'FreeBSD' ]]; then
-  platform='freebsd'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-  platform='macosx'
-fi
-echo "Platform: $platform"
-
 if [[ -x "/usr/local/bin/brew" || -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
   export HAS_BREW=1
   if [[ "$platform" == "macosx" ]]; then

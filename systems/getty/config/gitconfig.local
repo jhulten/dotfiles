@@ -1,2 +1,7 @@
 [user]
   email = jeffrey.hulten@gettyimages.com
+
+[url "git@gitlab.getty.cloud:"]
+    insteadOf = https://gitlab.getty.cloud
+    insteadOf = https://gitlab.amer.gettywan.com
+    

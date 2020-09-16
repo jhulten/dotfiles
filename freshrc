@@ -33,7 +33,7 @@ fresh shell/secrets.sh.asc --filter="gpg -du jhulten@gmail.com"
 
 fresh romkatv/powerlevel10k . --file=~/.omz-custom/themes/powerlevel10k/
 fresh robbyrussell/oh-my-zsh . --file=~/.oh-my-zsh/
-fresh asdf-vm/asdf . --file=~/.asdf/ --ref=v0.7.8
+
 
 # CONFIG FILES
 fresh-options --file

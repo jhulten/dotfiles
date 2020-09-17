@@ -51,18 +51,17 @@ fresh GothenburgBitFactory/timewarrior ext/on-modify.timewarrior --bin=~/.task/h
 
 # BASHRC
 fresh-options --file=~/.bashrc --marker
-  fresh shell/bash/\*
   fresh freshshell/fresh contrib/source-build.sh
+  fresh shell/bash/\*
   fresh freshshell/fresh contrib/completion/fresh-completion.bash
   fresh gnachman/iterm2-website source/shell_integration/bash
 fresh-options
 
 # ZSH
 fresh-options --file=~/.zshrc --marker
-  fresh shell/zsh/\*
-  #fresh https://gist.github.com/querentCode/25f3ece8582103360cb835e9cab13a96 pltask.zsh
-
   fresh freshshell/fresh contrib/source-build.sh
+  fresh shell/zsh/\*
+
   fresh freshshell/fresh contrib/completion/fresh-completion.zsh
   fresh gnachman/iterm2-website source/shell_integration/zsh
 fresh-options
@@ -75,8 +74,9 @@ fresh-options --bin
   fresh defunkt/repl bin/repl
   fresh pengwynn/dotfiles bin/tmux-github-status
   fresh pengwynn/dotfiles bin/git-wtf
+  fresh pengwynn/dotfiles bin/git-churn
   fresh rafi/mux mux
-  fresh 8ware/task-dashboard task-dashboard
+  # fresh 8ware/task-dashboard task-dashboard
 fresh-options
 
 # VIM

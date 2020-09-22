@@ -1,1 +1,1 @@
-ensure_latest rust 1
+once_per_day ensure_latest rust 1

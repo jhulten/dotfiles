@@ -9,8 +9,15 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 echo "Platform: $platform"
 
-eval $(ssh-agent)
-ssh-add
+case "$-" in
+*i*)
+    eval $(ssh-agent)
+    ssh-add
+    ;;
+*) echo This shell is not interactive ;;
+esac
+
+. $HOME/.asdf/asdf.sh
 
 function has() { # BINARY_TO_FIND
     type "$1" &>/dev/null
@@ -55,4 +62,44 @@ function ensure_latest() { # ASDF_PLUGIN VERSION_PREFIX
     else
         echo ERR: asdf missing
     fi
+}
+
+function lastmod() { # FILENAME
+    if exists $1; then
+        case $platform in
+        'macosx')
+            stat -f "%m" $1
+            ;;
+        'linux')
+            stat -c "%Y" $1
+            ;;
+        *)
+            echo "Unsupported platform: $platform" >>/dev/stderr
+            exit -1
+            ;;
+        esac
+    fi
+}
+
+function once_per_day() { # COMMAND ARGS
+    NOW=$(date +%s)
+    DAY_IN_SECS=86400
+    CACHE_DIR=$HOME/.config/dotfiles/
+    mkdir -p $CACHE_DIR
+
+    HASH=$(echo $@ | sha1sum | cut -f1 -d' ')
+
+    if exists "$CACHE_DIR/$HASH"; then
+        if [[ $(lastmod $CACHE_DIR/$HASH) -gt $(($NOW - $DAY_IN_SECS)) ]]; then
+            return
+        fi
+    fi
+
+    eval $@
+    RESULT=$?
+
+    if [[ $RESULT -eq 0 ]]; then
+        touch "$CACHE_DIR/$HASH"
+    fi
+    return $RESULT
 }

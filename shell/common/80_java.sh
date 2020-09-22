@@ -1,1 +1,1 @@
-ensure_latest java openjdk-14         
+once_per_day ensure_latest java openjdk-14

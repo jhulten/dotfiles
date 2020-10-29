@@ -3,7 +3,7 @@ secrets.sh.asc: secrets.sh
 	rm secrets.sh
 
 secrets.sh:
-	gpg -u jhulten@gmail.com -o secrets.sh -d secrets.sh.asc 
+	gpg -u jhulten@gmail.com -o secrets.sh -d secrets.sh.asc
 
 encrypt: secrets.sh.asc
 decrypt: secrets.sh

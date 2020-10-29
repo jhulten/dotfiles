@@ -21,4 +21,3 @@ nmap <D-0> g^
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
-

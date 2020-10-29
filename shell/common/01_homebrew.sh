@@ -31,8 +31,8 @@ if [[ -x "/usr/local/bin/brew" || -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; t
     fi
   elif [[ "$platform" == "linux" ]]; then
     brewhome=/home/linuxbrew
-    export PKG_CONFIG_PATH="/usr/bin/pkg-config:$brewhome/.linuxbrew/bin/pkg-config" 
-    export PKG_CONFIG_LIBDIR="/usr/lib/pkgconfig:$brewhome/.linuxbrew/lib/pkgconfig" 
+    export PKG_CONFIG_PATH="/usr/bin/pkg-config:$brewhome/.linuxbrew/bin/pkg-config"
+    export PKG_CONFIG_LIBDIR="/usr/lib/pkgconfig:$brewhome/.linuxbrew/lib/pkgconfig"
     export PATH="$brewhome/.linuxbrew/bin:$PATH"
     export MANPATH="$brewhome/.linuxbrew/share/man:$MANPATH"
     export INFOPATH="$brewhome/.linuxbrew/share/info:$INFOPATH"

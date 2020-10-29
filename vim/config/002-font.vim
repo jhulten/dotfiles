@@ -4,4 +4,3 @@ if has("gui_gtk2")
 else
   set guifont=Inconsolata:h14
 endif
-

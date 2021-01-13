@@ -1,4 +1,4 @@
-alias aa="saml2aws login --skip-prompt"
+alias aa="security -i unlock-keychain && saml2aws login --skip-prompt"
 
 export AWS_SDK_LOAD_CONFIG=1
 export AWS_PROFILE=shared

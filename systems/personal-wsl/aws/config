@@ -1,0 +1,5 @@
+[default]
+region = us-west-2
+cli_pager=
+tcp_keepalive = true
+

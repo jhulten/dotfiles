@@ -1,0 +1,180 @@
+[default]
+region = us-west-2
+cli_pager=
+tcp_keepalive = true
+
+[profile r53-sandbox]
+role_arn = arn:aws:iam::099911042375:role/okta-r53-sandbox
+
+[profile shared]
+cli_pager=
+output=json
+role_session_name=jeffrey.hulten@gettyimages.com
+
+[profile shared-admin]
+role_arn = arn:aws:iam::780572868532:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile billing]
+role_arn = arn:aws:iam::749066829350:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile billing-admin]
+role_arn = arn:aws:iam::749066829350:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile tscloud]
+role_arn = arn:aws:iam::417045968450:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile tscloud-admin]
+role_arn = arn:aws:iam::417045968450:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile prod]
+role_arn = arn:aws:iam::428203796648:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile prod-admin]
+role_arn = arn:aws:iam::428203796648:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile nonprod]
+role_arn = arn:aws:iam::109498348011:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile nonprod-admin]
+role_arn = arn:aws:iam::109498348011:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile sandbox]
+role_arn = arn:aws:iam::099911042375:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile sandbox-admin]
+role_arn = arn:aws:iam::099911042375:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile legacy]
+role_arn = arn:aws:iam::961961469659:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile legacy-admin]
+role_arn = arn:aws:iam::961961469659:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile picscout]
+role_arn = arn:aws:iam::213122221850:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile picscout-admin]
+role_arn = arn:aws:iam::213122221850:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile assets-uswest]
+role_arn = arn:aws:iam::515856669541:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile assets-uswest-admin]
+role_arn = arn:aws:iam::515856669541:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile assets-useast]
+role_arn = arn:aws:iam::386449249002:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile assets-useast-admin]
+role_arn = arn:aws:iam::386449249002:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile mms-east]
+role_arn = arn:aws:iam::052439530341:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile mms-east-admin]
+role_arn = arn:aws:iam::052439530341:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile mms-west]
+role_arn = arn:aws:iam::816022872520:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile mms-west-admin]
+role_arn = arn:aws:iam::816022872520:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile partner-ingestion]
+role_arn = arn:aws:iam::341088822342:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile partner-ingestion-admin]
+role_arn = arn:aws:iam::341088822342:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile dns-admin]
+role_arn = arn:aws:iam::571231793573:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile edp-prod]
+role_arn = arn:aws:iam::856128960576:role/okta-tspoet
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600
+
+[profile edp-prod-admin]
+role_arn = arn:aws:iam::856128960576:role/okta-admin
+source_profile=shared
+role_session_name=jeffrey.hulten@gettyimages.com
+duration_seconds=3600

@@ -10,3 +10,8 @@ GTAGS
 GPATH
 GRTAGS
 .\#*
+
+.direnv
+.tool-versions
+.envrc
+.vscode/*

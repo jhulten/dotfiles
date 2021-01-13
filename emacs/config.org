@@ -113,7 +113,7 @@ I prefer the dark solarized theme for most of my character interfaces (terminal,
   (setq color-themes '())
   (use-package color-theme-solarized
     :config
-    (progn 
+    (progn
       (customize-set-variable 'frame-background-mode 'dark)
       (load-theme 'solarized t)))
 
@@ -211,7 +211,7 @@ It’s hard to remember keyboard shortcuts. The guide-key package pops up help a
     (progn
       (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
       (guide-key-mode 1)))  ; Enable guide-key-mode
-  
+
 #+END_SRC
 
 * System Specific Settings
@@ -574,7 +574,7 @@ Disk space is cheap. Save lots.
 
 #+END_SRC
 
-*** proselint integration into Flycheck 
+*** proselint integration into Flycheck
 
 `proselint` is a python tool for catching problems with written
 prose. It is configured as part of the block above, but requires the
@@ -860,7 +860,7 @@ you were working on. When you’re done, press C-c <left>.
 	"ot" 'org-todo
 	"oT" 'my/evil-org-insert-todo
 	"obt" 'org-babel-tangle)
-    
+
       ))
 
   ;; From https://github.com/jcf/emacs.d/blob/master/init-evil.org
@@ -1013,7 +1013,7 @@ you were working on. When you’re done, press C-c <left>.
       (setq org-agenda-todo-ignore-timestamp t)
       (setq org-agenda-todo-ignore-with-date nil)
       ))
-    
+
 
 #+END_SRC
 
@@ -1041,7 +1041,7 @@ you were working on. When you’re done, press C-c <left>.
 #+BEGIN_SRC emacs-lisp
 
   (setq org-tag-alist '((:startgroup . nil)
-                             ("@work" . ?w) 
+                             ("@work" . ?w)
 			     ("@home" . ?h)
 			     ("@shop" . ?s)
                              ("@errands" . ?e)
@@ -1187,7 +1187,7 @@ reveal.js is a HTML/Javascript slide format.
   :config
   (progn
     (org-projectile:per-repo)
-    (setq org-projectile:projects-file 
+    (setq org-projectile:projects-file
           "TODO.org")
     (setq org-agenda-files (append org-agenda-files (org-projectile:todo-files)))
     (add-to-list 'org-capture-templates (org-projectile:project-todo-entry "p"))))

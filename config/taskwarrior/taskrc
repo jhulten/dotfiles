@@ -44,5 +44,3 @@ include ~/.taskwarrior/contexts
 include ~/.taskwarrior/aliases
 
 xterm.title=yes
-
-

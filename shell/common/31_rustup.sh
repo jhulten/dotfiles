@@ -1,3 +1,1 @@
-if [[ -d $HOME/.cargo ]]; then
-  source $HOME/.cargo/env
-fi
+once_per_day ensure_latest rust 1

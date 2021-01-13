@@ -12,4 +12,3 @@ set statusline+=%<%P                         " file position
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-

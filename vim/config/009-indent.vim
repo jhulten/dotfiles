@@ -45,6 +45,3 @@ set showcmd   " display incomplete commands
 if has("gui_running")
   set guioptions=egmrt
 endif
-
-
-

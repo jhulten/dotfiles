@@ -6,4 +6,3 @@ map <leader>tm :tabmove
 
 vmap <tab> >gv
 vmap <s-tab> <gv
-

@@ -1,10 +1,7 @@
-# if has direnv; then
-# else
-#   echo "missing direnv"
-#   pkg_install direnv
-# fi
+once_per_day ensure_latest direnv 2
 
-# if has direnv; then
-#   echo "enabling direnv"
-#   eval "$(direnv hook `basename $SHELL`)"
-# fi
+# Hook direnv into your shell.
+eval "$(asdf exec direnv hook $(basename $SHELL))"
+
+# A shortcut for asdf managed direnv.
+direnv() { asdf exec direnv "$@"; }

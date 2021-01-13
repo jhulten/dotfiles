@@ -8,4 +8,3 @@ report.active_task.columns=id
 report.active_task.sort=urgency-
 report.active_task.filter=limit:1 status:pending
 report.active_task.labels=
-

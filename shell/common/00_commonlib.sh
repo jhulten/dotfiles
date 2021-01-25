@@ -12,7 +12,7 @@ echo "Platform: $platform"
 case "$-" in
 *i*)
     eval $(ssh-agent)
-    ssh-add
+    ssh-add -A
     ;;
 *) echo This shell is not interactive ;;
 esac

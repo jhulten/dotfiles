@@ -1,7 +1,6 @@
 [default]
 region = us-west-2
 cli_pager=
-tcp_keepalive = true
 
 [profile r53-sandbox]
 role_arn = arn:aws:iam::099911042375:role/okta-r53-sandbox

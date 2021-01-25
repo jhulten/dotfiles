@@ -90,7 +90,7 @@ fresh emacs/config.org --file=~/.emacs.d/config.org
 fresh emacs/secrets.el.asc --file=~/.emacs.d/secrets.el --filter="gpg -du jhulten@gmail.com"
 
 # AWS
-[ -d ~/.dotfiles/systems/$MACHINE_TYPE/aws ] && fresh systems/$MACHINE_TYPE/aws/\* --file=~/.aws/ --filter="gpg -du jhulten@gmail.com"
+#[ -d ~/.dotfiles/systems/$MACHINE_TYPE/aws ] && fresh systems/$MACHINE_TYPE/aws/\* --file=~/.aws/ --filter="gpg -du jhulten@gmail.com"
 
 # Tools
 fresh hakimel/reveal.js . --file=~/.tools/reveal.js/
@@ -116,5 +116,5 @@ fresh_after_build() {
   cp ~/.taskwarrior/taskrc ~/.taskrc
   chmod 600 ~/.taskrc
   chmod 755 ~/.git-templates/hooks/*
-  chmod 755 ~/.asdf/bin/asdf
+  [ -f ~/.asdf/bin/asdf ] && chmod 755 ~/.asdf/bin/asdf
 }
